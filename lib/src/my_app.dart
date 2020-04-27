@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/screens/splash.dart';
+import 'package:flutter_local_db/src/routes/app_route.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.teal
       ),
-      home: Splash()
+      onGenerateRoute: AppRoute.routes,
     );
   }
 }
