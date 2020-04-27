@@ -49,7 +49,7 @@ class User {
     return data;
   }
 
-  static List<User> buildListFromJson(dynamic json) {
+  static List<User> buildListFromJson(List<dynamic> json) {
     return json.map((dynamic x) => User.fromJson(x)).toList();
   }
 

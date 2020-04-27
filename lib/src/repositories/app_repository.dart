@@ -8,7 +8,7 @@ class AppRepository {
   
   Future<List<User>> getUser() async{
     final Response<dynamic> response = await _networkHelper.get('users') as Response<dynamic>;
-    return User.buildListFromJson(response.data as List<dynamic>);
+    return User.buildListFromJson(response.data);
   }
   
 }
