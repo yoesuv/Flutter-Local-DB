@@ -21,16 +21,17 @@ class UserHiveAdapter extends TypeAdapter<UserHive> {
       name: fields[1] as String,
       username: fields[2] as String,
       email: fields[3] as String,
-      phone: fields[4] as String,
-      website: fields[5] as String,
-      company: fields[6] as CompanyHive,
+      address: fields[4] as AddressHive,
+      phone: fields[5] as String,
+      website: fields[6] as String,
+      company: fields[7] as CompanyHive,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserHive obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -40,10 +41,12 @@ class UserHiveAdapter extends TypeAdapter<UserHive> {
       ..writeByte(3)
       ..write(obj.email)
       ..writeByte(4)
-      ..write(obj.phone)
+      ..write(obj.address)
       ..writeByte(5)
-      ..write(obj.website)
+      ..write(obj.phone)
       ..writeByte(6)
+      ..write(obj.website)
+      ..writeByte(7)
       ..write(obj.company);
   }
 }

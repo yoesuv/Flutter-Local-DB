@@ -16,20 +16,7 @@ class SplashBloc {
       List<User> users = await _appRepository.getUser();
       print('Splash Bloc # users count : ${users.length}');
       users.forEach((User user){
-        UserHive userHive = UserHive(
-          id: user.id,
-          name: user.name,
-          username: user.username,
-          email: user.email,
-          phone: user.phone,
-          website: user.website,
-          company: CompanyHive(
-            name: user.company.name,
-            catchPhrase: user.company.catchPhrase,
-            bs: user.company.bs
-          )
-        );
-        boxUsers.add(userHive);
+
       });
       return true;
     } catch (err) {

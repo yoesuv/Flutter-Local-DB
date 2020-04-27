@@ -1,3 +1,4 @@
+import 'package:flutter_local_db/src/data/hive/address_hive.dart';
 import 'package:flutter_local_db/src/data/hive/company_hive.dart';
 import 'package:hive/hive.dart';
 part 'user_hive.g.dart';
@@ -14,12 +15,14 @@ class UserHive extends HiveObject {
   @HiveField(3)
   String email;
   @HiveField(4)
-  String phone;
+  AddressHive address;
   @HiveField(5)
-  String website;
+  String phone;
   @HiveField(6)
+  String website;
+  @HiveField(7)
   CompanyHive company;
 
-  UserHive({this.id, this.name, this.username, this.email, this.phone, this.website, this.company});
+  UserHive({this.id, this.name, this.username, this.email, this.address, this.phone, this.website, this.company});
 
 }
