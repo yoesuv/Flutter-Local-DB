@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_db/src/data/hive/address_hive.dart';
 import 'package:flutter_local_db/src/data/hive/company_hive.dart';
 import 'package:flutter_local_db/src/data/hive/geo_hive.dart';
 import 'package:flutter_local_db/src/data/hive/user_hive.dart';
@@ -23,4 +24,5 @@ void initHive() async {
   Hive.registerAdapter(CompanyHiveAdapter());
   Hive.registerAdapter(UserHiveAdapter());
   Hive.registerAdapter(GeoHiveAdapter());
+  Hive.registerAdapter(AddressHiveAdapter());
 }
