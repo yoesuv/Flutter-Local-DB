@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_db/src/screens/splash.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -8,11 +9,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.teal
       ),
-      home: Scaffold(
-        body: Center(
-          child: Text('Flutter Local DB'),
-        ),
-      ),
+      home: Splash()
     );
   }
 }
