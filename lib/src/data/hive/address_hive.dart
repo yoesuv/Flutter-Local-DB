@@ -16,6 +16,6 @@ class AddressHive extends HiveObject {
   @HiveField(4)
   GeoHive geo;
 
-  AddressHive(this.street, this.suite, this.city, this.zipcode, this.geo);
+  AddressHive({this.street, this.suite, this.city, this.zipcode, this.geo});
 
 }

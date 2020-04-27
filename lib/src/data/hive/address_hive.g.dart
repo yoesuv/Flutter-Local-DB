@@ -17,11 +17,11 @@ class AddressHiveAdapter extends TypeAdapter<AddressHive> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AddressHive(
-      fields[0] as String,
-      fields[1] as String,
-      fields[2] as String,
-      fields[3] as String,
-      fields[4] as GeoHive,
+      street: fields[0] as String,
+      suite: fields[1] as String,
+      city: fields[2] as String,
+      zipcode: fields[3] as String,
+      geo: fields[4] as GeoHive,
     );
   }
 
