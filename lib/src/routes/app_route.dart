@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_db/src/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/screens/detail.dart';
 import 'package:flutter_local_db/src/screens/home.dart';
 import 'package:flutter_local_db/src/screens/splash.dart';
 
@@ -15,6 +17,13 @@ class AppRoute {
       return MaterialPageRoute(
           builder: (context) {
             return Home();
+          }
+      );
+    } else if (settings.name == Detail.routeName) {
+      final UserHive userHive = settings.arguments;
+      return MaterialPageRoute(
+          builder: (context) {
+            return Detail(userHive);
           }
       );
     } else {
