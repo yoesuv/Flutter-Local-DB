@@ -12,20 +12,41 @@ class ItemUser extends StatelessWidget {
     return Dismissible(
       key: Key(_userHive.id.toString()),
       child: Container(
-        padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+        padding: EdgeInsets.only(top: 8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('${_userHive.id}. ${_userHive.name}', style: TextStyle(fontSize: 18)),
-            Divider(thickness: 1)
+            Container(
+              padding: EdgeInsets.only(left: 8),
+              child: Text('${_userHive.id}. ${_userHive.name}', style: TextStyle(fontSize: 18)),
+            ),
+            SizedBox(height: 8),
+            Divider(thickness: 1, height: 1)
           ],
         ),
       ),
+      background: _background(),
       onDismissed: (DismissDirection direction) {
-
+        print('Item User # direction ${direction.toString()}');
       },
       direction: DismissDirection.endToStart,
     );
   }
+
+  Widget _background() {
+    return Container(
+      color: Colors.red,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Icon(Icons.delete, color: Colors.white),
+          Text('Delete', style: TextStyle(color: Colors.white)),
+          SizedBox(width: 8)
+        ],
+      ),
+    );
+  }
+
 }
