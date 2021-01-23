@@ -1,5 +1,5 @@
-import 'package:flutter_local_db/src/data/hive/address_hive.dart';
-import 'package:flutter_local_db/src/data/hive/company_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/address_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/company_hive.dart';
 import 'package:hive/hive.dart';
 part 'user_hive.g.dart';
 

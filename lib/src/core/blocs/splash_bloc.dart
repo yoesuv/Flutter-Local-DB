@@ -1,10 +1,10 @@
-import 'package:flutter_local_db/src/data/hive/address_hive.dart';
-import 'package:flutter_local_db/src/data/hive/company_hive.dart';
-import 'package:flutter_local_db/src/data/hive/geo_hive.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
-import 'package:flutter_local_db/src/data/hive_constants.dart';
-import 'package:flutter_local_db/src/models/user_model.dart';
-import 'package:flutter_local_db/src/repositories/app_repository.dart';
+import 'package:flutter_local_db/src/core/data/hive/address_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/company_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/geo_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive_constants.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
+import 'package:flutter_local_db/src/core/repositories/app_repository.dart';
 import 'package:hive/hive.dart';
 
 class SplashBloc {

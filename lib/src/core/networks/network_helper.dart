@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_local_db/src/data/constants.dart';
-import 'package:flutter_local_db/src/networks/logging_interceptor.dart';
+import 'package:flutter_local_db/src/core/data/constants.dart';
+import 'package:flutter_local_db/src/core/networks/logging_interceptor.dart';
 
 class NetworkHelper {
 

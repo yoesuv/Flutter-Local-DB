@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/blocs/splash_bloc.dart';
-import 'package:flutter_local_db/src/screens/home.dart';
+import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
+import 'package:flutter_local_db/src/ui/screens/home.dart';
 
 class Splash extends StatelessWidget {
 

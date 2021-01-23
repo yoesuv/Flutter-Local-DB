@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_local_db/src/models/user_model.dart';
-import 'package:flutter_local_db/src/networks/network_helper.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
+import 'package:flutter_local_db/src/core/networks/network_helper.dart';
 
 class AppRepository {
   

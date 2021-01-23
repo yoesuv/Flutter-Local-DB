@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
-import 'package:flutter_local_db/src/screens/detail.dart';
-import 'package:flutter_local_db/src/screens/home.dart';
-import 'package:flutter_local_db/src/screens/splash.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/ui/screens/detail.dart';
+import 'package:flutter_local_db/src/ui/screens/home.dart';
+import 'package:flutter_local_db/src/ui/screens/splash.dart';
 
 class AppRoute {
 

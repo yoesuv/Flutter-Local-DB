@@ -1,4 +1,4 @@
-import 'package:flutter_local_db/src/data/hive/geo_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/geo_hive.dart';
 import 'package:hive/hive.dart';
 part 'address_hive.g.dart';
 

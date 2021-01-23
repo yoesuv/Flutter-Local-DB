@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/data/hive_constants.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
-import 'package:flutter_local_db/src/widgets/item_user.dart';
+import 'package:flutter_local_db/src/core/data/hive_constants.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/ui/widgets/item_user.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

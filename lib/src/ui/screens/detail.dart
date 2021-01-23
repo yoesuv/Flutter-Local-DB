@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
 
 class Detail extends StatelessWidget {
 

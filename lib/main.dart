@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_db/src/data/hive/address_hive.dart';
-import 'package:flutter_local_db/src/data/hive/company_hive.dart';
-import 'package:flutter_local_db/src/data/hive/geo_hive.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/address_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/company_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/geo_hive.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
 import 'package:flutter_local_db/src/my_app.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';

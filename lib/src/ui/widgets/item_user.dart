@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/data/hive/user_hive.dart';
-import 'package:flutter_local_db/src/screens/detail.dart';
+import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/ui/screens/detail.dart';
 
 class ItemUser extends StatelessWidget {
 
