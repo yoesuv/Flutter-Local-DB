@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/home_bloc.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
@@ -16,7 +18,10 @@ class AppRoute {
     } else if (settings.name == Home.routeName) {
       return MaterialPageRoute(
           builder: (context) {
-            return Home();
+            return BlocProvider(
+                create: (context) => HomeBloc(),
+                child: Home()
+            );
           }
       );
     } else if (settings.name == Detail.routeName) {
