@@ -1,32 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'address_hive.dart';
+part of 'address_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AddressHiveAdapter extends TypeAdapter<AddressHive> {
+class AddressAdapter extends TypeAdapter<Address> {
   @override
-  final typeId = 4;
+  final int typeId = 4;
 
   @override
-  AddressHive read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+  Address read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return AddressHive(
+    return Address(
       street: fields[0] as String,
       suite: fields[1] as String,
       city: fields[2] as String,
       zipcode: fields[3] as String,
-      geo: fields[4] as GeoHive,
+      geo: fields[4] as Geo,
     );
   }
 
   @override
-  void write(BinaryWriter writer, AddressHive obj) {
+  void write(BinaryWriter writer, Address obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -40,4 +40,14 @@ class AddressHiveAdapter extends TypeAdapter<AddressHive> {
       ..writeByte(4)
       ..write(obj.geo);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AddressAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

@@ -1,7 +1,14 @@
-class Company {
+import 'package:hive/hive.dart';
+part 'company_model.g.dart';
 
+@HiveType(typeId: 1)
+class Company extends HiveObject {
+
+  @HiveField(0)
   String name;
+  @HiveField(1)
   String catchPhrase;
+  @HiveField(2)
   String bs;
 
   Company({this.name, this.catchPhrase, this.bs});

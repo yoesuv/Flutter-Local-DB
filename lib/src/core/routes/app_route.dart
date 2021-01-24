@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
 import 'package:flutter_local_db/src/ui/screens/splash.dart';
@@ -20,10 +20,10 @@ class AppRoute {
           }
       );
     } else if (settings.name == Detail.routeName) {
-      final UserHive userHive = settings.arguments;
+      final User user = settings.arguments;
       return MaterialPageRoute(
           builder: (context) {
-            return Detail(userHive);
+            return Detail(user);
           }
       );
     } else {

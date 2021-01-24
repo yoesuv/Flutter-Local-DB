@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 
 class ItemUser extends StatelessWidget {
 
-  ItemUser(this._userHive);
+  ItemUser(this._user);
 
-  final UserHive _userHive;
+  final User _user;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(_userHive.id.toString()),
+      key: Key(_user.id.toString()),
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, Detail.routeName, arguments: _userHive),
+        onTap: () => Navigator.pushNamed(context, Detail.routeName, arguments: _user),
         child: Container(
           padding: EdgeInsets.only(top: 8),
           child: Column(
@@ -22,7 +22,7 @@ class ItemUser extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(left: 8),
-                child: Text('${_userHive.id}. ${_userHive.name}', style: TextStyle(fontSize: 18)),
+                child: Text('${_user.id}. ${_user.name}', style: TextStyle(fontSize: 18)),
               ),
               SizedBox(height: 8),
               Divider(thickness: 1, height: 1)

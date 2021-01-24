@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/core/data/hive/user_hive.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
 
 class Detail extends StatelessWidget {
 
   static const routeName = 'detail';
 
-  Detail(this._userHive);
+  Detail(this._user);
 
-  final UserHive _userHive;
+  final User _user;
 
   @override
   Widget build(BuildContext context) {
@@ -21,22 +21,22 @@ class Detail extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Id : ${_userHive.id}'),
-            Text('Name : ${_userHive.name}'),
-            Text('Username : ${_userHive.username}'),
-            Text('Email : ${_userHive.email}'),
+            Text('Id : ${_user.id}'),
+            Text('Name : ${_user.name}'),
+            Text('Username : ${_user.username}'),
+            Text('Email : ${_user.email}'),
             Text('Address', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('Street : ${_userHive.address.street}'),
-            Text('Suite : ${_userHive.address.suite}'),
-            Text('City : ${_userHive.address.city}'),
-            Text('Zip Code : ${_userHive.address.zipcode}'),
-            Text('Geo : ${_userHive.address.geo.lat}/${_userHive.address.geo.lng}'),
-            Text('Phone : ${_userHive.phone}'),
-            Text('Website : ${_userHive.website}'),
+            Text('Street : ${_user.address.street}'),
+            Text('Suite : ${_user.address.suite}'),
+            Text('City : ${_user.address.city}'),
+            Text('Zip Code : ${_user.address.zipcode}'),
+            Text('Geo : ${_user.address.geo.lat}/${_user.address.geo.lng}'),
+            Text('Phone : ${_user.phone}'),
+            Text('Website : ${_user.website}'),
             Text('Company', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('Name : ${_userHive.company.name}'),
-            Text('Catch Phrase : ${_userHive.company.catchPhrase}'),
-            Text('Business : ${_userHive.company.bs}'),
+            Text('Name : ${_user.company.name}'),
+            Text('Catch Phrase : ${_user.company.catchPhrase}'),
+            Text('Business : ${_user.company.bs}'),
           ],
         ),
       ),

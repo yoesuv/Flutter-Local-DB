@@ -1,35 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_hive.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserHiveAdapter extends TypeAdapter<UserHive> {
+class UserAdapter extends TypeAdapter<User> {
   @override
-  final typeId = 2;
+  final int typeId = 2;
 
   @override
-  UserHive read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+  User read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return UserHive(
+    return User(
       id: fields[0] as int,
       name: fields[1] as String,
       username: fields[2] as String,
       email: fields[3] as String,
-      address: fields[4] as AddressHive,
+      address: fields[4] as Address,
       phone: fields[5] as String,
       website: fields[6] as String,
-      company: fields[7] as CompanyHive,
+      company: fields[7] as Company,
     );
   }
 
   @override
-  void write(BinaryWriter writer, UserHive obj) {
+  void write(BinaryWriter writer, User obj) {
     writer
       ..writeByte(8)
       ..writeByte(0)
@@ -49,4 +49,14 @@ class UserHiveAdapter extends TypeAdapter<UserHive> {
       ..writeByte(7)
       ..write(obj.company);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
