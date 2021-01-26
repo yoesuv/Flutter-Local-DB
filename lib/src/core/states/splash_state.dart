@@ -21,6 +21,11 @@ class SplashStateSuccess extends SplashState {
 }
 
 class SplashStateFailed extends SplashState {
+
+  final Exception e;
+
+  SplashStateFailed(this.e);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [e];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_db/src/core/blocs/home_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/new_splash_bloc.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
@@ -12,7 +13,10 @@ class AppRoute {
     if (settings.name == '/') {
       return MaterialPageRoute(
         builder: (context) {
-          return Splash();
+          return BlocProvider(
+              create: (context) => NewSplashBloc(),
+              child: Splash()
+          );
         }
       );
     } else if (settings.name == Home.routeName) {

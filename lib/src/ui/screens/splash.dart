@@ -1,30 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/new_splash_bloc.dart';
+import 'package:flutter_local_db/src/core/events/splash_event.dart';
+import 'package:flutter_local_db/src/core/states/splash_state.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
 
-class Splash extends StatelessWidget {
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+
+  NewSplashBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = context.read<NewSplashBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
-    SplashBloc bloc = SplashBloc();
-    _getUsers(context, bloc);
-    return Scaffold(
-      body: Center(
-        child: Text('Flutter Local DB', style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.bold
-        )),
+    return BlocProvider(create: (context) => _bloc..add(SplashEventInit()),
+      child: Scaffold(
+        body: _splash()
       ),
     );
+
   }
 
-  void _getUsers(BuildContext context, SplashBloc bloc) {
-    bloc.getUsers().then((bool response) {
-      if (response) {
-        Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
-      } else {
-        print('Splash # Failed get users');
-      }
-    });
+  Widget _splash() {
+    return BlocBuilder<NewSplashBloc, SplashState>(
+      builder: (context, state) {
+        print("Splash # splash state is $state");
+        return Center(
+          child: Text('Flutter Local DB', style: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.bold
+          )),
+        );
+      },
+    );
   }
 
 }
