@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_db/src/core/blocs/home_bloc.dart';
-import 'package:flutter_local_db/src/core/blocs/new_splash_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
@@ -14,7 +14,7 @@ class AppRoute {
       return MaterialPageRoute(
         builder: (context) {
           return BlocProvider(
-              create: (context) => NewSplashBloc(),
+              create: (context) => SplashBloc(),
               child: Splash()
           );
         }

@@ -9,15 +9,15 @@ import 'package:flutter_local_db/src/core/repositories/app_repository.dart';
 import 'package:flutter_local_db/src/core/states/splash_state.dart';
 import 'package:hive/hive.dart';
 
-class NewSplashBloc extends Bloc<SplashEvent, SplashState> {
+class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   final AppRepository _appRepository = AppRepository();
 
-  NewSplashBloc() : super(SplashStateInit());
+  SplashBloc() : super(SplashStateInit());
 
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
-    print("New Splash Bloc # event $event");
+    print("Splash Bloc # event $event");
     if (event is SplashEventInit) {
       yield* _getListUser();
     }

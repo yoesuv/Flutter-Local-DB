@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_db/src/core/blocs/new_splash_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
 import 'package:flutter_local_db/src/core/events/splash_event.dart';
 import 'package:flutter_local_db/src/core/states/splash_state.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
@@ -12,12 +12,12 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
 
-  NewSplashBloc _bloc;
+  SplashBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    _bloc = context.read<NewSplashBloc>();
+    _bloc = context.read<SplashBloc>();
   }
 
   @override
@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
   }
 
   Widget _splash() {
-    return BlocBuilder<NewSplashBloc, SplashState>(
+    return BlocBuilder<SplashBloc, SplashState>(
       builder: (context, state) {
         print("Splash # splash state is $state");
         return Center(
