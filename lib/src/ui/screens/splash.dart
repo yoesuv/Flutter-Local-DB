@@ -4,6 +4,7 @@ import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
 import 'package:flutter_local_db/src/core/events/splash_event.dart';
 import 'package:flutter_local_db/src/core/states/splash_state.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
+import 'package:flutter_local_db/src/ui/widgets/text_splash.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -27,7 +28,6 @@ class _SplashState extends State<Splash> {
         body: _splash()
       ),
     );
-
   }
 
   Widget _splash() {
@@ -35,12 +35,24 @@ class _SplashState extends State<Splash> {
       builder: (context, state) {
         print("Splash # splash state is $state");
         return Center(
-          child: Text('Flutter Local DB', style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold
-          )),
+          child: _textSplash(state),
         );
       },
     );
+  }
+
+  Widget _textSplash(SplashState state) {
+    if (state is SplashStateSuccess) {
+      return TextSplash("Init Data Done");
+    } else if (state is SplashStateFailed) {
+      return TextSplash("Failed Init Data");
+    } else {
+      return TextSplash("Flutter Local DB");
+    }
+  }
+
+  void _openHome(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
   }
 
 }
