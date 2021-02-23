@@ -32,8 +32,10 @@ class _SplashState extends State<Splash> {
 
   Widget _splash() {
     return BlocBuilder<SplashBloc, SplashState>(
-      builder: (context, state) {
-        print("Splash # splash state is $state");
+      builder: (context, SplashState state) {
+        if (state is SplashStateSuccess) {
+          _openHome(context);
+        }
         return Center(
           child: _textSplash(state),
         );
@@ -52,7 +54,9 @@ class _SplashState extends State<Splash> {
   }
 
   void _openHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
+    });
   }
 
 }

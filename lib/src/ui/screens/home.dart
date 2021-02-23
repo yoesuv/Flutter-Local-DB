@@ -37,7 +37,6 @@ class _HomeState extends State<Home> {
   Widget _buildList() {
     return BlocBuilder<HomeBloc, HomeState> (
       builder: (context, state) {
-        print("Home # state is $state");
         if (state is HomeStateInit) {
           return Center(
             child: Text("Loading..."),
