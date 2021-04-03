@@ -25,11 +25,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   Stream<SplashState> _getListUser() async* {
     try {
-      Box<User> boxUsers = await Hive.openBox<User>(USERS);
-      boxUsers.clear();
       List<User> users = await _appRepository.getUser();
-      users.forEach((User user){
-        _insertUser(boxUsers, user);
+      Box<User> boxUsers = await Hive.openBox<User>(USERS);
+      boxUsers.clear().then((value) => {
+        users.forEach((User user) {
+          _insertUser(boxUsers, user);
+        })
       });
       yield SplashStateSuccess(listUser: users);
     } catch (e) {
