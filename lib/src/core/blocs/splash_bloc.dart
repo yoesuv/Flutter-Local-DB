@@ -17,16 +17,15 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
-    print("Splash Bloc # event $event");
     if (event is SplashEventInit) {
       yield* _getListUser();
     }
   }
 
   Stream<SplashState> _getListUser() async* {
+    Box<User> boxUsers = await Hive.openBox<User>(USERS);
     try {
       List<User> users = await _appRepository.getUser();
-      Box<User> boxUsers = await Hive.openBox<User>(USERS);
       boxUsers.clear().then((value) => {
         users.forEach((User user) {
           _insertUser(boxUsers, user);

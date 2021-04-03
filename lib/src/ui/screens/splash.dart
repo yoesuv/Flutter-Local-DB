@@ -35,6 +35,8 @@ class _SplashState extends State<Splash> {
       builder: (context, SplashState state) {
         if (state is SplashStateSuccess) {
           _openHome(context);
+        } else if (state is SplashStateFailed) {
+          _openHome(context);
         }
         return Center(
           child: _textSplash(state),
@@ -47,7 +49,7 @@ class _SplashState extends State<Splash> {
     if (state is SplashStateSuccess) {
       return TextSplash("Init Data Done");
     } else if (state is SplashStateFailed) {
-      return TextSplash("Failed Init Data");
+      return TextSplash("Offline Mode");
     } else {
       return TextSplash("Flutter Local DB");
     }

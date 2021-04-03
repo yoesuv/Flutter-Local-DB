@@ -22,6 +22,10 @@ class HomeStateSuccess extends HomeState {
 }
 
 class HomeStateFailed extends HomeState {
+  final List<User> listUser;
+
+  HomeStateFailed({@required this.listUser});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [listUser];
 }

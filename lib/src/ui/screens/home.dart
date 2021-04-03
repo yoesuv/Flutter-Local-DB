@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_db/src/core/blocs/home_bloc.dart';
 import 'package:flutter_local_db/src/core/events/home_event.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/core/states/home_state.dart';
 import 'package:flutter_local_db/src/ui/widgets/item_user.dart';
 
@@ -29,12 +30,12 @@ class _HomeState extends State<Home> {
       ),
       body: BlocProvider(
         create: (context) => _bloc..add(HomeEventInit()),
-        child: _buildList(),
+        child: _buildScreen(),
       )
     );
   }
 
-  Widget _buildList() {
+  Widget _buildScreen() {
     return BlocBuilder<HomeBloc, HomeState> (
       builder: (context, state) {
         if (state is HomeStateInit) {
@@ -42,16 +43,9 @@ class _HomeState extends State<Home> {
             child: Text("Loading..."),
           );
         } else if (state is HomeStateSuccess) {
-          return ListView.builder(
-            itemCount: state.listUser.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ItemUser(state.listUser[index]);
-            },
-          );
+          return _buildList(state.listUser);
         } else if (state is HomeStateFailed) {
-          return Center(
-            child: Text("Failed.."),
-          );
+          return _buildList(state.listUser);
         } else {
           return Center(
             child: Text("Something Wrong..."),
@@ -59,4 +53,14 @@ class _HomeState extends State<Home> {
         }
       });
   }
+
+  Widget _buildList(List<User> users) {
+    return ListView.builder(
+      itemCount: users.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ItemUser(users[index]);
+      },
+    );
+  }
+
 }

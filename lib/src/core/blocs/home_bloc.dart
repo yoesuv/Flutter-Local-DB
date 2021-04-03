@@ -17,15 +17,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   HomeState _loadUser() {
+    List<User> users = [];
+    var box = Hive.box<User>(USERS);
     try {
-      List<User> users = List<User>();
-      var box = Hive.box<User>(USERS);
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });
       return HomeStateSuccess(listUser: users);
     } catch (e) {
-      return HomeStateFailed();
+      box.values.forEach((boxUser) {
+        users.add(boxUser);
+      });
+      return HomeStateFailed(listUser: users);
     }
   }
 
