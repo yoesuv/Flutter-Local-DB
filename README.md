@@ -6,10 +6,10 @@ Download apk file [here](https://www.dropbox.com/s/bneo1d0942xmuwy)
 
 #### Flutter Dependencies
 ```
-Flutter 1.12.13+hotfix.9 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision f139b11009 (4 weeks ago) • 2020-03-30 13:57:30 -0700
-Engine • revision af51afceb8
-Tools • Dart 2.7.2
+Flutter 2.0.4 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision b1395592de (2 days ago) • 2021-04-01 14:25:01 -0700
+Engine • revision 2dce47073a
+Tools • Dart 2.12.2
 ```
 
 #### Screenshot ####
@@ -18,6 +18,8 @@ Tools • Dart 2.7.2
 | ![](https://i.imgur.com/JikuOGr.jpg) | ![](https://i.imgur.com/68jVMUQ.jpg) | ![](https://i.imgur.com/KekPZAJ.jpg) | ![](https://i.imgur.com/CSSmhkU.jpg) |
 
 #### List Library
+- [bloc library](https://github.com/felangel/bloc)
 - [dio](https://pub.dev/packages/dio)
+- [equatable](https://pub.dev/packages/equatable)
 - [hive](https://pub.dev/packages/hive)
 - [path provider](https://pub.dev/packages/path_provider)
