@@ -25,11 +25,11 @@ dependencies:
   bloc: ^6.1.1
   cupertino_icons: ^0.1.2
   dio: ^3.0.10
-  equatable: ^1.2.5
+  equatable: ^2.0.3
   flutter_bloc: ^6.1.1
   hive: ^2.0.2
   hive_flutter: ^1.0.0
-  path_provider: ^2.0.1
+  path_provider: ^2.0.2
 
 dev_dependencies:
   flutter_test:
