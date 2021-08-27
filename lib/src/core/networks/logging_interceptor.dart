@@ -3,13 +3,13 @@ import 'package:dio/dio.dart';
 class LoggingInterceptor extends Interceptor{
 
   @override
-  Future<dynamic> onResponse(Response<dynamic> response) {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    super.onResponse(response, handler);
     print('\n\n');
-    print('<--- HTTP CODE : ${response.statusCode} URL : ${response.request.baseUrl}${response.request.path}');
+    print('<--- HTTP CODE : ${response.statusCode} URL : ${response.realUri.toString()}');
     print('Headers: ');
     printWrapped('Response : ${response.data}');
     print('<--- END HTTP');
-    return super.onResponse(response);
   }
 
   void printWrapped(String text) {
