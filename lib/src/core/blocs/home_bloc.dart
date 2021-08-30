@@ -13,6 +13,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> mapEventToState(HomeEvent event) async*{
     if (event is HomeEventInit) {
       yield _loadUser();
+    } else if (event is HomeEventRemove) {
+      yield await _removeUser(event.index);
     }
   }
 
@@ -20,6 +22,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     List<User> users = [];
     var box = Hive.box<User>(USERS);
     try {
+      box.values.forEach((boxUser) {
+        users.add(boxUser);
+      });
+      return HomeStateSuccess(listUser: users);
+    } catch (e) {
+      box.values.forEach((boxUser) {
+        users.add(boxUser);
+      });
+      return HomeStateFailed(listUser: users);
+    }
+  }
+
+  Future<HomeState> _removeUser(int index) async {
+    List<User> users = [];
+    var box = Hive.box<User>(USERS);
+    try {
+      await box.deleteAt(index);
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });

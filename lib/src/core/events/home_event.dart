@@ -6,3 +6,10 @@ class HomeEventInit extends HomeEvent {
   @override
   List<Object> get props => [];
 }
+
+class HomeEventRemove extends HomeEvent {
+  HomeEventRemove(this.index);
+  final int index;
+  @override
+  List<Object> get props => [];
+}

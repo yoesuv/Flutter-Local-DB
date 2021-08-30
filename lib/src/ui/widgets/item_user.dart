@@ -12,7 +12,7 @@ class ItemUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(_user.id.toString()),
+      key: UniqueKey(),
       child: InkWell(
         onTap: () => Navigator.pushNamed(context, Detail.routeName, arguments: _user),
         child: Container(

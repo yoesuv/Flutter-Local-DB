@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
       itemCount: users.length,
       itemBuilder: (BuildContext context, int index) {
         return ItemUser(users[index], (User user) {
-          print("Home # Remove user ${user.name}");
+          _bloc.add(HomeEventRemove(index));
         });
       },
     );
