@@ -2,7 +2,7 @@
 
 Save data from API to local Database. sample from ```http://jsonplaceholder.typicode.com/users/```
 
-Download apk file [here](https://www.dropbox.com/s/bneo1d0942xmuwy)
+Download apk file [here](https://www.dropbox.com/s/1gygg6wdtv1i0dk)
 
 #### Flutter Dependencies
 ```
@@ -12,10 +12,13 @@ Engine • revision 241c87ad80
 Tools • Dart 2.13.4
 ```
 
-#### Screenshot ####
-| Splash | List User | List Action Delete | Detail |
+#### Screenshot Android ####
+| ![](https://i.imgur.com/PYdK63i.jpg) | ![](https://i.imgur.com/KBXo0bC.jpg) | ![](https://i.imgur.com/hgsW4e8.jpg) | ![](https://i.imgur.com/jxxxAPi.jpg) |
 | ---- | ---- | ---- | ---- |
-| ![](https://i.imgur.com/JikuOGr.jpg) | ![](https://i.imgur.com/68jVMUQ.jpg) | ![](https://i.imgur.com/KekPZAJ.jpg) | ![](https://i.imgur.com/CSSmhkU.jpg) |
+
+#### Screenshot iOS ####
+| ![]() | ![]() | ![]() | ![]() |
+| ---- | ---- | ---- | ---- |
 
 #### List Library
 - [bloc library](https://bloclibrary.dev/)
