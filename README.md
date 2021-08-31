@@ -2,23 +2,26 @@
 
 Save data from API to local Database. sample from ```http://jsonplaceholder.typicode.com/users/```
 
-Download apk file [here](https://www.dropbox.com/s/bneo1d0942xmuwy)
+Download apk file [here](https://www.dropbox.com/s/tg61kqdwervkwmw)
 
 #### Flutter Dependencies
 ```
-Flutter 2.0.4 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision b1395592de (2 days ago) • 2021-04-01 14:25:01 -0700
-Engine • revision 2dce47073a
-Tools • Dart 2.12.2
+Flutter 2.2.3 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision f4abaa0735 (8 weeks ago) • 2021-07-01 12:46:11 -0700
+Engine • revision 241c87ad80
+Tools • Dart 2.13.4
 ```
 
-#### Screenshot ####
-| Splash | List User | List Action Delete | Detail |
+#### Screenshot Android ####
+| ![](https://i.imgur.com/PYdK63i.jpg) | ![](https://i.imgur.com/KBXo0bC.jpg) | ![](https://i.imgur.com/hgsW4e8.jpg) | ![](https://i.imgur.com/jxxxAPi.jpg) |
 | ---- | ---- | ---- | ---- |
-| ![](https://i.imgur.com/JikuOGr.jpg) | ![](https://i.imgur.com/68jVMUQ.jpg) | ![](https://i.imgur.com/KekPZAJ.jpg) | ![](https://i.imgur.com/CSSmhkU.jpg) |
+
+#### Screenshot iOS ####
+| ![](https://i.imgur.com/5iJ2Hne.png) | ![](https://i.imgur.com/5y8V8Zt.png) | ![](https://i.imgur.com/WahANVz.png) | ![](https://i.imgur.com/2lZTx4H.png) |
+| ---- | ---- | ---- | ---- |
 
 #### List Library
-- [bloc library](https://github.com/felangel/bloc)
+- [bloc library](https://bloclibrary.dev/)
 - [dio](https://pub.dev/packages/dio)
 - [equatable](https://pub.dev/packages/equatable)
 - [hive](https://pub.dev/packages/hive)

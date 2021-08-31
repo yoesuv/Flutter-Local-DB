@@ -4,14 +4,15 @@ import 'package:flutter_local_db/src/ui/screens/detail.dart';
 
 class ItemUser extends StatelessWidget {
 
-  ItemUser(this._user);
+  ItemUser(this._user, this._delete);
 
   final User _user;
+  final void Function(User user) _delete;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(_user.id.toString()),
+      key: UniqueKey(),
       child: InkWell(
         onTap: () => Navigator.pushNamed(context, Detail.routeName, arguments: _user),
         child: Container(
@@ -32,7 +33,7 @@ class ItemUser extends StatelessWidget {
       ),
       background: _background(),
       onDismissed: (DismissDirection direction) {
-        print('Item User # direction ${direction.toString()}');
+        _delete(_user);
       },
       direction: DismissDirection.endToStart,
     );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
@@ -57,7 +59,9 @@ class _SplashState extends State<Splash> {
 
   void _openHome(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
+      Timer(Duration(seconds: 1), ()  {
+        Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
+      });
     });
   }
 

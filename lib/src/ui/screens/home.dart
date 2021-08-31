@@ -58,7 +58,9 @@ class _HomeState extends State<Home> {
     return ListView.builder(
       itemCount: users.length,
       itemBuilder: (BuildContext context, int index) {
-        return ItemUser(users[index]);
+        return ItemUser(users[index], (User user) {
+          _bloc.add(HomeEventRemove(index));
+        });
       },
     );
   }
