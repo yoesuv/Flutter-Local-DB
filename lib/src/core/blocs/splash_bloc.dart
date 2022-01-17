@@ -13,16 +13,11 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   final AppRepository _appRepository = AppRepository();
 
-  SplashBloc() : super(SplashStateInit());
-
-  @override
-  Stream<SplashState> mapEventToState(SplashEvent event) async* {
-    if (event is SplashEventInit) {
-      yield* _getListUser();
-    }
+  SplashBloc() : super(SplashStateInit()) {
+    on<SplashEventInit>(_getListUser);
   }
 
-  Stream<SplashState> _getListUser() async* {
+  void _getListUser(SplashEventInit event, Emitter<SplashState> emit) async {
     Box<User> boxUsers = await Hive.openBox<User>(USERS);
     try {
       List<User> users = await _appRepository.getUser();
@@ -31,9 +26,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           _insertUser(boxUsers, user);
         })
       });
-      yield SplashStateSuccess(listUser: users);
+      emit(SplashStateSuccess(listUser: users));
     } catch (e) {
-      yield SplashStateFailed(e);
+      emit(SplashStateFailed(e));
     }
   }
 

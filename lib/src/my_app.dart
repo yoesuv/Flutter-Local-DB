@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Local DB',
       theme: ThemeData(
-          primaryColor: Colors.teal
+        primarySwatch: Colors.teal
       ),
       onGenerateRoute: AppRoute.routes,
     );
