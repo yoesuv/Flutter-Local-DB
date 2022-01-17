@@ -2,14 +2,14 @@
 
 Save data from API to local Database. sample from ```http://jsonplaceholder.typicode.com/users/```
 
-Download apk file [here](https://www.dropbox.com/s/tg61kqdwervkwmw)
+Download apk file [here](https://www.dropbox.com/s/eh766hsy2awu00x)
 
 #### Flutter Dependencies
 ```
-Flutter 2.2.3 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision f4abaa0735 (8 weeks ago) • 2021-07-01 12:46:11 -0700
-Engine • revision 241c87ad80
-Tools • Dart 2.13.4
+Flutter 2.8.1 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 77d935af4d (4 weeks ago) • 2021-12-16 08:37:33 -0800
+Engine • revision 890a5fca2e
+Tools • Dart 2.15.1
 ```
 
 #### Screenshot Android ####
@@ -25,4 +25,3 @@ Tools • Dart 2.13.4
 - [dio](https://pub.dev/packages/dio)
 - [equatable](https://pub.dev/packages/equatable)
 - [hive](https://pub.dev/packages/hive)
-- [path provider](https://pub.dev/packages/path_provider)
