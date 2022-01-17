@@ -14,10 +14,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final AppRepository _appRepository = AppRepository();
 
   SplashBloc() : super(SplashStateInit()) {
-    on<SplashEventInit>(_getListUserNew);
+    on<SplashEventInit>(_getListUser);
   }
 
-  void _getListUserNew(SplashEventInit event, Emitter<SplashState> emit) async {
+  void _getListUser(SplashEventInit event, Emitter<SplashState> emit) async {
     Box<User> boxUsers = await Hive.openBox<User>(USERS);
     try {
       List<User> users = await _appRepository.getUser();

@@ -7,47 +7,41 @@ import 'package:hive/hive.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   
-  HomeBloc() : super(HomeStateInit());
-
-  @override
-  Stream<HomeState> mapEventToState(HomeEvent event) async*{
-    if (event is HomeEventInit) {
-      yield _loadUser();
-    } else if (event is HomeEventRemove) {
-      yield await _removeUser(event.index);
-    }
+  HomeBloc() : super(HomeStateInit()) {
+    on<HomeEventInit>(_loadUser);
+    on<HomeEventRemove>(_removeUser);
   }
 
-  HomeState _loadUser() {
+  void _loadUser(HomeEventInit event, Emitter<HomeState> emit) {
     List<User> users = [];
     var box = Hive.box<User>(USERS);
     try {
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });
-      return HomeStateSuccess(listUser: users);
+      emit(HomeStateSuccess(listUser: users));
     } catch (e) {
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });
-      return HomeStateFailed(listUser: users);
+      emit(HomeStateFailed(listUser: users));
     }
   }
 
-  Future<HomeState> _removeUser(int index) async {
+  void _removeUser(HomeEventRemove event, Emitter<HomeState> emit) async {
     List<User> users = [];
     var box = Hive.box<User>(USERS);
     try {
-      await box.deleteAt(index);
+      await box.deleteAt(event.index);
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });
-      return HomeStateSuccess(listUser: users);
+      emit(HomeStateSuccess(listUser: users));
     } catch (e) {
       box.values.forEach((boxUser) {
         users.add(boxUser);
       });
-      return HomeStateFailed(listUser: users);
+      emit(HomeStateFailed(listUser: users));
     }
   }
 
