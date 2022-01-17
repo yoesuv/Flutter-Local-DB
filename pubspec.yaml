@@ -25,7 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^4.0.0
   equatable: ^2.0.3
-  flutter_bloc: ^7.3.3
+  flutter_bloc: ^7.2.0
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   path_provider: ^2.0.2
