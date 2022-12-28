@@ -28,7 +28,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       });
       emit(SplashStateSuccess(listUser: users));
     } catch (e) {
-      emit(SplashStateFailed(e));
+      emit(SplashStateFailed(e as Exception));
     }
   }
 
@@ -39,21 +39,21 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         username: user.username,
         email: user.email,
         address: Address(
-            street: user.address.street,
-            suite: user.address.suite,
-            city: user.address.city,
-            zipcode: user.address.zipcode,
+            street: user.address?.street,
+            suite: user.address?.suite,
+            city: user.address?.city,
+            zipcode: user.address?.zipcode,
             geo: Geo(
-                lat: user.address.geo.lat,
-                lng: user.address.geo.lng
+                lat: user.address?.geo?.lat,
+                lng: user.address?.geo?.lng
             )
         ),
         phone: user.phone,
         website: user.website,
         company: Company(
-            name: user.company.name,
-            catchPhrase: user.company.catchPhrase,
-            bs: user.company.bs
+            name: user.company?.name,
+            catchPhrase: user.company?.catchPhrase,
+            bs: user.company?.bs
         )
     );
     box.add(_user);

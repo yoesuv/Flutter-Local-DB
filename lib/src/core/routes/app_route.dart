@@ -29,7 +29,7 @@ class AppRoute {
           }
       );
     } else if (settings.name == Detail.routeName) {
-      final User user = settings.arguments;
+      final User user = settings.arguments as User;
       return MaterialPageRoute(
           builder: (context) {
             return Detail(user);
