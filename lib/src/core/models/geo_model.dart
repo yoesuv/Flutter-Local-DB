@@ -5,10 +5,10 @@ part 'geo_model.g.dart';
 @HiveType(typeId: 3)
 class Geo extends HiveObject{
 
-  @HiveField(0)
-  String lat;
-  @HiveField(1)
-  String lng;
+  @HiveField(0, defaultValue: "0")
+  String? lat;
+  @HiveField(1, defaultValue: "0")
+  String? lng;
 
   Geo({this.lat, this.lng});
 

@@ -4,12 +4,12 @@ part 'company_model.g.dart';
 @HiveType(typeId: 1)
 class Company extends HiveObject {
 
-  @HiveField(0)
-  String name;
-  @HiveField(1)
-  String catchPhrase;
-  @HiveField(2)
-  String bs;
+  @HiveField(0, defaultValue: "")
+  String? name;
+  @HiveField(1, defaultValue: "")
+  String? catchPhrase;
+  @HiveField(2, defaultValue: "")
+  String? bs;
 
   Company({this.name, this.catchPhrase, this.bs});
 

@@ -14,7 +14,7 @@ class NetworkHelper {
     _dio.interceptors.add(LoggingInterceptor());
   }
 
-  Dio _dio;
+  late Dio _dio;
 
   Future<dynamic> get(String url) async {
     dynamic response;

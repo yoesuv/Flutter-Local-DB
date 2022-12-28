@@ -17,8 +17,8 @@ class GeoAdapter extends TypeAdapter<Geo> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Geo(
-      lat: fields[0] as String,
-      lng: fields[1] as String,
+      lat: fields[0] == null ? '0' : fields[0] as String?,
+      lng: fields[1] == null ? '0' : fields[1] as String?,
     );
   }
 
