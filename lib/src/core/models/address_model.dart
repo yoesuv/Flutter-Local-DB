@@ -7,15 +7,15 @@ part 'address_model.g.dart';
 class Address extends HiveObject{
 
   @HiveField(0)
-  String street;
+  String? street;
   @HiveField(1)
-  String suite;
+  String? suite;
   @HiveField(2)
-  String city;
+  String? city;
   @HiveField(3)
-  String zipcode;
+  String? zipcode;
   @HiveField(4)
-  Geo geo;
+  Geo? geo;
 
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
 
@@ -34,7 +34,7 @@ class Address extends HiveObject{
     data['city'] = this.city;
     data['zipcode'] = this.zipcode;
     if (this.geo != null) {
-      data['geo'] = this.geo.toJson();
+      data['geo'] = this.geo?.toJson();
     }
     return data;
   }

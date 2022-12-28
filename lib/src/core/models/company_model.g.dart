@@ -17,9 +17,9 @@ class CompanyAdapter extends TypeAdapter<Company> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Company(
-      name: fields[0] as String,
-      catchPhrase: fields[1] as String,
-      bs: fields[2] as String,
+      name: fields[0] == null ? '' : fields[0] as String?,
+      catchPhrase: fields[1] == null ? '' : fields[1] as String?,
+      bs: fields[2] == null ? '' : fields[2] as String?,
     );
   }
 

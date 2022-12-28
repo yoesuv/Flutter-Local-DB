@@ -7,22 +7,22 @@ part 'user_model.g.dart';
 @HiveType(typeId: 2)
 class User extends HiveObject{
 
-  @HiveField(0)
-  int id;
+  @HiveField(0, defaultValue: 0)
+  int? id;
   @HiveField(1)
-  String name;
+  String? name;
   @HiveField(2)
-  String username;
+  String? username;
   @HiveField(3)
-  String email;
+  String? email;
   @HiveField(4)
-  Address address;
+  Address? address;
   @HiveField(5)
-  String phone;
+  String? phone;
   @HiveField(6)
-  String website;
+  String? website;
   @HiveField(7)
-  Company company;
+  Company? company;
 
   User(
       {this.id,
@@ -54,12 +54,12 @@ class User extends HiveObject{
     data['username'] = this.username;
     data['email'] = this.email;
     if (this.address != null) {
-      data['address'] = this.address.toJson();
+      data['address'] = this.address?.toJson();
     }
     data['phone'] = this.phone;
     data['website'] = this.website;
     if (this.company != null) {
-      data['company'] = this.company.toJson();
+      data['company'] = this.company?.toJson();
     }
     return data;
   }
