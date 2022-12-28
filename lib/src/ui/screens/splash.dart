@@ -15,7 +15,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
 
-  SplashBloc _bloc;
+  late SplashBloc _bloc;
 
   @override
   void initState() {
