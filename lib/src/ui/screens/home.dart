@@ -9,8 +9,12 @@ import 'package:flutter_local_db/src/ui/widgets/item_user.dart';
 class Home extends StatefulWidget {
   static const String routeName = 'home';
 
+  const Home({super.key});
+
   @override
-  _HomeState createState() => _HomeState();
+  State<StatefulWidget> createState() {
+    return _HomeState();
+  }
 }
 
 class _HomeState extends State<Home> {
@@ -25,33 +29,31 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('List User'),
-      ),
-      body: BlocProvider(
-        create: (context) => _bloc..add(HomeEventInit()),
-        child: _buildScreen(),
-      )
-    );
+        appBar: AppBar(
+          title: const Text('List User'),
+        ),
+        body: BlocProvider(
+          create: (context) => _bloc..add(HomeEventInit()),
+          child: _buildScreen(),
+        ));
   }
 
   Widget _buildScreen() {
-    return BlocBuilder<HomeBloc, HomeState> (
-      builder: (context, state) {
-        if (state is HomeStateInit) {
-          return Center(
-            child: Text("Loading..."),
-          );
-        } else if (state is HomeStateSuccess) {
-          return _buildList(state.listUser);
-        } else if (state is HomeStateFailed) {
-          return _buildList(state.listUser);
-        } else {
-          return Center(
-            child: Text("Something Wrong..."),
-          );
-        }
-      });
+    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+      if (state is HomeStateInit) {
+        return const Center(
+          child: Text("Loading..."),
+        );
+      } else if (state is HomeStateSuccess) {
+        return _buildList(state.listUser);
+      } else if (state is HomeStateFailed) {
+        return _buildList(state.listUser);
+      } else {
+        return const Center(
+          child: Text("Something Wrong..."),
+        );
+      }
+    });
   }
 
   Widget _buildList(List<User> users) {
@@ -64,5 +66,4 @@ class _HomeState extends State<Home> {
       },
     );
   }
-
 }

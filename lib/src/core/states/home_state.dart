@@ -1,15 +1,12 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 
 abstract class HomeState extends Equatable {
-  const HomeState();
+  @override
+  List<Object?> get props => [];
 }
 
-class HomeStateInit extends HomeState {
-  @override
-  List<Object> get props => [];
-}
+class HomeStateInit extends HomeState {}
 
 class HomeStateSuccess extends HomeState {
   final List<User> listUser;

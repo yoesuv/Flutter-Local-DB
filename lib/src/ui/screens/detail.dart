@@ -5,7 +5,7 @@ class Detail extends StatelessWidget {
 
   static const routeName = 'detail';
 
-  Detail(this._user);
+  const Detail(this._user, {super.key});
 
   final User _user;
 
@@ -13,10 +13,10 @@ class Detail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail User'),
+        title: const Text('Detail User'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +25,7 @@ class Detail extends StatelessWidget {
             Text('Name : ${_user.name}'),
             Text('Username : ${_user.username}'),
             Text('Email : ${_user.email}'),
-            Text('Address', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Address', style: TextStyle(fontWeight: FontWeight.bold)),
             Text('Street : ${_user.address?.street}'),
             Text('Suite : ${_user.address?.suite}'),
             Text('City : ${_user.address?.city}'),
@@ -33,7 +33,7 @@ class Detail extends StatelessWidget {
             Text('Geo : ${_user.address?.geo?.lat}/${_user.address?.geo?.lng}'),
             Text('Phone : ${_user.phone}'),
             Text('Website : ${_user.website}'),
-            Text('Company', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Company', style: TextStyle(fontWeight: FontWeight.bold)),
             Text('Name : ${_user.company?.name}'),
             Text('Catch Phrase : ${_user.company?.catchPhrase}'),
             Text('Business : ${_user.company?.bs}'),
