@@ -1,2 +1,2 @@
 const String BASE_URL = 'http://jsonplaceholder.typicode.com/';
-const int TIME_OUT = 30000;
+const Duration TIME_OUT = Duration(seconds: 30);

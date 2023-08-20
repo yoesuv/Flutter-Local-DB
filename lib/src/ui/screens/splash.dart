@@ -9,12 +9,15 @@ import 'package:flutter_local_db/src/ui/screens/home.dart';
 import 'package:flutter_local_db/src/ui/widgets/text_splash.dart';
 
 class Splash extends StatefulWidget {
+  const Splash({super.key});
+
   @override
-  _SplashState createState() => _SplashState();
+  State<StatefulWidget> createState() {
+    return _SplashState();
+  }
 }
 
 class _SplashState extends State<Splash> {
-
   late SplashBloc _bloc;
 
   @override
@@ -25,10 +28,9 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => _bloc..add(SplashEventInit()),
-      child: Scaffold(
-        body: _splash()
-      ),
+    return BlocProvider(
+      create: (context) => _bloc..add(SplashEventInit()),
+      child: Scaffold(body: _splash()),
     );
   }
 
@@ -49,20 +51,26 @@ class _SplashState extends State<Splash> {
 
   Widget _textSplash(SplashState state) {
     if (state is SplashStateSuccess) {
-      return TextSplash("Init Data Done");
+      return const TextSplash("Init Data Done");
     } else if (state is SplashStateFailed) {
-      return TextSplash("Offline Mode");
+      return const TextSplash("Offline Mode");
     } else {
-      return TextSplash("Flutter Local DB");
+      return const TextSplash("Flutter Local DB");
     }
   }
 
   void _openHome(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Timer(Duration(seconds: 1), ()  {
-        Navigator.pushNamedAndRemoveUntil(context, Home.routeName, ModalRoute.withName('/'));
-      });
+      Timer(
+        const Duration(seconds: 1),
+        () {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Home.routeName,
+            ModalRoute.withName('/'),
+          );
+        },
+      );
     });
   }
-
 }

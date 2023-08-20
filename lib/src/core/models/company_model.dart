@@ -20,10 +20,10 @@ class Company extends HiveObject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['catchPhrase'] = this.catchPhrase;
-    data['bs'] = this.bs;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['name'] = name;
+    data['catchPhrase'] = catchPhrase;
+    data['bs'] = bs;
     return data;
   }
 

@@ -40,26 +40,26 @@ class User extends HiveObject{
     username = json['username'];
     email = json['email'];
     address =
-    json['address'] != null ? new Address.fromJson(json['address']) : null;
+    json['address'] != null ? Address.fromJson(json['address']) : null;
     phone = json['phone'];
     website = json['website'];
     company =
-    json['company'] != null ? new Company.fromJson(json['company']) : null;
+    json['company'] != null ? Company.fromJson(json['company']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    if (this.address != null) {
-      data['address'] = this.address?.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['username'] = username;
+    data['email'] = email;
+    if (address != null) {
+      data['address'] = address?.toJson();
     }
-    data['phone'] = this.phone;
-    data['website'] = this.website;
-    if (this.company != null) {
-      data['company'] = this.company?.toJson();
+    data['phone'] = phone;
+    data['website'] = website;
+    if (company != null) {
+      data['company'] = company?.toJson();
     }
     return data;
   }
