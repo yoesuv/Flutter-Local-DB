@@ -6,10 +6,10 @@ Download apk file [here](https://www.dropbox.com/s/2m4sizn0oo2u7hf)
 
 #### Flutter Dependencies ####
 ```
-Flutter 3.3.10 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 135454af32 (13 days ago) • 2022-12-15 07:36:55 -0800
-Engine • revision 3316dd8728
-Tools • Dart 2.18.6 • DevTools 2.15.0
+Flutter 3.13.0 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision efbf63d9c6 (4 days ago) • 2023-08-15 21:05:06 -0500
+Engine • revision 1ac611c64e
+Tools • Dart 3.1.0 • DevTools 2.25.0
 ```
 
 #### Screenshot Android ####
@@ -21,7 +21,11 @@ Tools • Dart 2.18.6 • DevTools 2.15.0
 | ---- | ---- | ---- | ---- |
 
 #### List Library
-- [bloc library](https://bloclibrary.dev/)
-- [dio](https://pub.dev/packages/dio)
-- [equatable](https://pub.dev/packages/equatable)
-- [hive](https://pub.dev/packages/hive)
+- [Build Resolvers](https://pub.dev/packages/build_resolvers)
+- [Build Runner](https://pub.dev/packages/build_runner)
+- [Dio](https://pub.dev/packages/dio)
+- [Equatable](https://pub.dev/packages/equatable)
+- [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
+- [Hive](https://pub.dev/packages/hive)
+- [Hive Flutter](https://pub.dev/packages/hive_flutter)
+- [Path Provider](https://pub.dev/packages/path_provider)

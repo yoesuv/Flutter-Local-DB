@@ -24,17 +24,17 @@ class Address extends HiveObject{
     suite = json['suite'];
     city = json['city'];
     zipcode = json['zipcode'];
-    geo = json['geo'] != null ? new Geo.fromJson(json['geo']) : null;
+    geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['street'] = this.street;
-    data['suite'] = this.suite;
-    data['city'] = this.city;
-    data['zipcode'] = this.zipcode;
-    if (this.geo != null) {
-      data['geo'] = this.geo?.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['street'] = street;
+    data['suite'] = suite;
+    data['city'] = city;
+    data['zipcode'] = zipcode;
+    if (geo != null) {
+      data['geo'] = geo?.toJson();
     }
     return data;
   }
