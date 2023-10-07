@@ -3,7 +3,6 @@ import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 
 class ItemUser extends StatelessWidget {
-
   const ItemUser(this._user, this._delete, {super.key});
 
   final User _user;
@@ -19,7 +18,11 @@ class ItemUser extends StatelessWidget {
       },
       direction: DismissDirection.endToStart,
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, Detail.routeName, arguments: _user),
+        onTap: () => Navigator.pushNamed(
+          context,
+          Detail.routeName,
+          arguments: _user,
+        ),
         child: Container(
           padding: const EdgeInsets.only(top: 8),
           child: Column(
@@ -28,7 +31,10 @@ class ItemUser extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.only(left: 8),
-                child: Text('${_user.id}. ${_user.name}', style: TextStyle(fontSize: 18)),
+                child: Text(
+                  '${_user.id}. ${_user.name}',
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
               const SizedBox(height: 8),
               const Divider(thickness: 1, height: 1)
@@ -53,5 +59,4 @@ class ItemUser extends StatelessWidget {
       ),
     );
   }
-
 }
