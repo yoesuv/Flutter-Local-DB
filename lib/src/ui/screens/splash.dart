@@ -24,14 +24,12 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     _bloc = context.read<SplashBloc>();
+    _bloc.add(SplashEventInit());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _bloc..add(SplashEventInit()),
-      child: Scaffold(body: _splash()),
-    );
+    return Scaffold(body: _splash());
   }
 
   Widget _splash() {

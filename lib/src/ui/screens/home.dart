@@ -24,18 +24,17 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _bloc = context.read<HomeBloc>();
+    _bloc.add(HomeEventInit());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('List User'),
-        ),
-        body: BlocProvider(
-          create: (context) => _bloc..add(HomeEventInit()),
-          child: _buildScreen(),
-        ));
+      appBar: AppBar(
+        title: const Text('List User'),
+      ),
+      body: _buildScreen(),
+    );
   }
 
   Widget _buildScreen() {
