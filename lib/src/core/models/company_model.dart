@@ -1,14 +1,15 @@
-import 'package:hive/hive.dart';
+
+import 'package:isar/isar.dart';
+
 part 'company_model.g.dart';
 
-@HiveType(typeId: 1)
-class Company extends HiveObject {
 
-  @HiveField(0, defaultValue: "")
+@collection
+class Company {
+
+  Id id = Isar.autoIncrement;
   String? name;
-  @HiveField(1, defaultValue: "")
   String? catchPhrase;
-  @HiveField(2, defaultValue: "")
   String? bs;
 
   Company({this.name, this.catchPhrase, this.bs});
