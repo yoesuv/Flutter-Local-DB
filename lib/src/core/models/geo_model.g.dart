@@ -3,17 +3,13 @@
 part of 'geo_model.dart';
 
 // **************************************************************************
-// IsarCollectionGenerator
+// IsarEmbeddedGenerator
 // **************************************************************************
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetGeoCollection on Isar {
-  IsarCollection<Geo> get geos => this.collection();
-}
-
-const GeoSchema = CollectionSchema(
+const GeoSchema = Schema(
   name: r'Geo',
   id: -4625595225487077499,
   properties: {
@@ -32,14 +28,6 @@ const GeoSchema = CollectionSchema(
   serialize: _geoSerialize,
   deserialize: _geoDeserialize,
   deserializeProp: _geoDeserializeProp,
-  idName: r'id',
-  indexes: {},
-  links: {},
-  embeddedSchemas: {},
-  getId: _geoGetId,
-  getLinks: _geoGetLinks,
-  attach: _geoAttach,
-  version: '3.1.0+1',
 );
 
 int _geoEstimateSize(
@@ -83,7 +71,6 @@ Geo _geoDeserialize(
     lat: reader.readStringOrNull(offsets[0]),
     lng: reader.readStringOrNull(offsets[1]),
   );
-  object.id = id;
   return object;
 }
 
@@ -103,146 +90,7 @@ P _geoDeserializeProp<P>(
   }
 }
 
-Id _geoGetId(Geo object) {
-  return object.id;
-}
-
-List<IsarLinkBase<dynamic>> _geoGetLinks(Geo object) {
-  return [];
-}
-
-void _geoAttach(IsarCollection<dynamic> col, Id id, Geo object) {
-  object.id = id;
-}
-
-extension GeoQueryWhereSort on QueryBuilder<Geo, Geo, QWhere> {
-  QueryBuilder<Geo, Geo, QAfterWhere> anyId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(const IdWhereClause.any());
-    });
-  }
-}
-
-extension GeoQueryWhere on QueryBuilder<Geo, Geo, QWhereClause> {
-  QueryBuilder<Geo, Geo, QAfterWhereClause> idEqualTo(Id id) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IdWhereClause.between(
-        lower: id,
-        upper: id,
-      ));
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterWhereClause> idNotEqualTo(Id id) {
-    return QueryBuilder.apply(this, (query) {
-      if (query.whereSort == Sort.asc) {
-        return query
-            .addWhereClause(
-              IdWhereClause.lessThan(upper: id, includeUpper: false),
-            )
-            .addWhereClause(
-              IdWhereClause.greaterThan(lower: id, includeLower: false),
-            );
-      } else {
-        return query
-            .addWhereClause(
-              IdWhereClause.greaterThan(lower: id, includeLower: false),
-            )
-            .addWhereClause(
-              IdWhereClause.lessThan(upper: id, includeUpper: false),
-            );
-      }
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterWhereClause> idGreaterThan(Id id,
-      {bool include = false}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(
-        IdWhereClause.greaterThan(lower: id, includeLower: include),
-      );
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterWhereClause> idLessThan(Id id,
-      {bool include = false}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(
-        IdWhereClause.lessThan(upper: id, includeUpper: include),
-      );
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterWhereClause> idBetween(
-    Id lowerId,
-    Id upperId, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IdWhereClause.between(
-        lower: lowerId,
-        includeLower: includeLower,
-        upper: upperId,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-}
-
 extension GeoQueryFilter on QueryBuilder<Geo, Geo, QFilterCondition> {
-  QueryBuilder<Geo, Geo, QAfterFilterCondition> idEqualTo(Id value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'id',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterFilterCondition> idGreaterThan(
-    Id value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'id',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterFilterCondition> idLessThan(
-    Id value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'id',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterFilterCondition> idBetween(
-    Id lower,
-    Id upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'id',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
   QueryBuilder<Geo, Geo, QAfterFilterCondition> latIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -533,103 +381,3 @@ extension GeoQueryFilter on QueryBuilder<Geo, Geo, QFilterCondition> {
 }
 
 extension GeoQueryObject on QueryBuilder<Geo, Geo, QFilterCondition> {}
-
-extension GeoQueryLinks on QueryBuilder<Geo, Geo, QFilterCondition> {}
-
-extension GeoQuerySortBy on QueryBuilder<Geo, Geo, QSortBy> {
-  QueryBuilder<Geo, Geo, QAfterSortBy> sortByLat() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lat', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> sortByLatDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lat', Sort.desc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> sortByLng() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lng', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> sortByLngDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lng', Sort.desc);
-    });
-  }
-}
-
-extension GeoQuerySortThenBy on QueryBuilder<Geo, Geo, QSortThenBy> {
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenById() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'id', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenByIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'id', Sort.desc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenByLat() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lat', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenByLatDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lat', Sort.desc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenByLng() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lng', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QAfterSortBy> thenByLngDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'lng', Sort.desc);
-    });
-  }
-}
-
-extension GeoQueryWhereDistinct on QueryBuilder<Geo, Geo, QDistinct> {
-  QueryBuilder<Geo, Geo, QDistinct> distinctByLat({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'lat', caseSensitive: caseSensitive);
-    });
-  }
-
-  QueryBuilder<Geo, Geo, QDistinct> distinctByLng({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'lng', caseSensitive: caseSensitive);
-    });
-  }
-}
-
-extension GeoQueryProperty on QueryBuilder<Geo, Geo, QQueryProperty> {
-  QueryBuilder<Geo, int, QQueryOperations> idProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'id');
-    });
-  }
-
-  QueryBuilder<Geo, String?, QQueryOperations> latProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'lat');
-    });
-  }
-
-  QueryBuilder<Geo, String?, QQueryOperations> lngProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'lng');
-    });
-  }
-}

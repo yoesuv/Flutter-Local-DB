@@ -1,20 +1,14 @@
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 import 'geo_model.dart';
 
 part 'address_model.g.dart';
 
-@HiveType(typeId: 4)
-class Address extends HiveObject{
-
-  @HiveField(0)
+@embedded
+class Address {
   String? street;
-  @HiveField(1)
   String? suite;
-  @HiveField(2)
   String? city;
-  @HiveField(3)
   String? zipcode;
-  @HiveField(4)
   Geo? geo;
 
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
@@ -38,5 +32,4 @@ class Address extends HiveObject{
     }
     return data;
   }
-
 }

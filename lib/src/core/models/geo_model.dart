@@ -2,10 +2,9 @@ import 'package:isar/isar.dart';
 
 part 'geo_model.g.dart';
 
-@collection
+@embedded
 class Geo {
 
-  Id id = Isar.autoIncrement;
   String? lat;
   String? lng;
 
@@ -17,7 +16,7 @@ class Geo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['lat'] = lat;
     data['lng'] = lng;
     return data;

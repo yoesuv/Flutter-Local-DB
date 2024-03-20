@@ -4,10 +4,9 @@ import 'package:isar/isar.dart';
 part 'company_model.g.dart';
 
 
-@collection
+@embedded
 class Company {
 
-  Id id = Isar.autoIncrement;
   String? name;
   String? catchPhrase;
   String? bs;
