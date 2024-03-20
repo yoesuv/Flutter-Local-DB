@@ -1,13 +1,12 @@
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 
 part 'geo_model.g.dart';
 
-@HiveType(typeId: 3)
-class Geo extends HiveObject{
+@collection
+class Geo {
 
-  @HiveField(0, defaultValue: "0")
+  Id id = Isar.autoIncrement;
   String? lat;
-  @HiveField(1, defaultValue: "0")
   String? lng;
 
   Geo({this.lat, this.lng});
