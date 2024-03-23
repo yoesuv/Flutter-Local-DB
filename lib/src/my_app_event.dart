@@ -13,7 +13,7 @@ class MyAppInitUserEvent extends MyAppEvent {
   List<Object?> get props => [users];
 }
 
-class MyAppLoadUserEvent extends MyAppEvent {}
+class MyAppLoadListUserEvent extends MyAppEvent {}
 
 class MyAppDeleteUserEvent extends MyAppEvent {
   MyAppDeleteUserEvent({required this.user});

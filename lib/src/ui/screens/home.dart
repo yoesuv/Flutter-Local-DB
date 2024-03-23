@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _myAppBloc = context.read<MyAppBloc>();
-    _myAppBloc?.add(MyAppLoadUserEvent());
+    _myAppBloc?.add(MyAppLoadListUserEvent());
   }
 
   @override

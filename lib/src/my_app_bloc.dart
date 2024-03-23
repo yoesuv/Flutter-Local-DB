@@ -9,7 +9,7 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
 
   MyAppBloc() : super(const MyAppState()) {
     on<MyAppInitUserEvent>(_onInitUser);
-    on<MyAppLoadUserEvent>(_onLoadUser);
+    on<MyAppLoadListUserEvent>(_onLoadListUser);
     on<MyAppDeleteUserEvent>(_onDeleteUser);
   }
 
@@ -32,8 +32,8 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     }
   }
 
-  void _onLoadUser(
-    MyAppLoadUserEvent event,
+  void _onLoadListUser(
+    MyAppLoadListUserEvent event,
     Emitter<MyAppState> emit,
   ) async {
     emit(state.copyWith(
