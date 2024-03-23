@@ -16,4 +16,10 @@ class DbUserRepository extends DbRepository<User> {
     final db = isar?.users;
     return await db?.where().findAll() ?? [];
   }
+
+  Future<void> delete(User user) async {
+    isar?.writeTxn(() async {
+      await isar?.users.delete(user.id ?? 0);
+    });
+  }
 }

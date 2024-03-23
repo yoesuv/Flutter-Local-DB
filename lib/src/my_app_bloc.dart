@@ -56,6 +56,20 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     MyAppDeleteUserEvent event,
     Emitter<MyAppState> emit,
   ) async {
-    print("MyAppBloc # DELETE USER ${event.user.toJson()}");
+    emit(state.copyWith(
+      statusDeleteUser: FormzSubmissionStatus.inProgress,
+    ));
+    try {
+      await _dbUserRepository.delete(event.user);
+      final users = await _dbUserRepository.getUsers();
+      emit(state.copyWith(
+        statusDeleteUser: FormzSubmissionStatus.success,
+        users: users,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        statusDeleteUser: FormzSubmissionStatus.failure,
+      ));
+    }
   }
 }

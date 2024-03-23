@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
       bloc: _myAppBloc,
       buildWhen: (previous, current) =>
           previous.statusLoadListUser != current.statusLoadListUser ||
+          previous.statusDeleteUser != current.statusDeleteUser ||
           previous.users != current.users,
       builder: (context, state) {
         return _buildList(state.users);
