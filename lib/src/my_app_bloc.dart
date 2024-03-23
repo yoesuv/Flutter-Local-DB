@@ -9,6 +9,7 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
 
   MyAppBloc() : super(const MyAppState()) {
     on<MyAppInitUserEvent>(_onInitUser);
+    on<MyAppLoadUserEvent>(_onLoadUser);
   }
 
   void _onInitUser(
@@ -28,5 +29,16 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
         statusInsetUser: FormzSubmissionStatus.failure,
       ));
     }
+  }
+
+  void _onLoadUser(
+    MyAppLoadUserEvent event,
+    Emitter<MyAppState> emit,
+  ) async {
+    final users = await _dbUserRepository.getUsers();
+    print("MyAppBloc # users count ${users.length}");
+    emit(state.copyWith(
+      users: users,
+    ));
   }
 }

@@ -12,3 +12,5 @@ class MyAppInitUserEvent extends MyAppEvent {
   @override
   List<Object?> get props => [users];
 }
+
+class MyAppLoadUserEvent extends MyAppEvent {}
