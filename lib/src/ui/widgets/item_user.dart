@@ -11,7 +11,7 @@ class ItemUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: UniqueKey(),
+      key: Key("${_user.id}"),
       background: _background(),
       onDismissed: (DismissDirection direction) {
         _delete(_user);
