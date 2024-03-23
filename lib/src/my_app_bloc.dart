@@ -18,16 +18,16 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     Emitter<MyAppState> emit,
   ) async {
     emit(state.copyWith(
-      statusInsetUser: FormzSubmissionStatus.inProgress,
+      statusInsertUser: FormzSubmissionStatus.inProgress,
     ));
     try {
       await _dbUserRepository.saveData(event.users);
       emit(state.copyWith(
-        statusInsetUser: FormzSubmissionStatus.success,
+        statusInsertUser: FormzSubmissionStatus.success,
       ));
     } catch (e) {
       emit(state.copyWith(
-        statusInsetUser: FormzSubmissionStatus.failure,
+        statusInsertUser: FormzSubmissionStatus.failure,
       ));
     }
   }
@@ -36,10 +36,20 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     MyAppLoadUserEvent event,
     Emitter<MyAppState> emit,
   ) async {
-    final users = await _dbUserRepository.getUsers();
     emit(state.copyWith(
-      users: users,
+      statusLoadListUser: FormzSubmissionStatus.inProgress,
     ));
+    try {
+      final users = await _dbUserRepository.getUsers();
+      emit(state.copyWith(
+        statusLoadListUser: FormzSubmissionStatus.success,
+        users: users,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        statusLoadListUser: FormzSubmissionStatus.failure,
+      ));
+    }
   }
 
   void _onDeleteUser(

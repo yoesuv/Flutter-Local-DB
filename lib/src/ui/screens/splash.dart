@@ -39,9 +39,9 @@ class _SplashState extends State<Splash> {
       body: BlocListener<MyAppBloc, MyAppState>(
         bloc: _myAppBloc,
         listenWhen: (previous, current) =>
-            previous.statusInsetUser != current.statusInsetUser,
+            previous.statusInsertUser != current.statusInsertUser,
         listener: (context, state) {
-          final sts = state.statusInsetUser;
+          final sts = state.statusInsertUser;
           if (sts.isSuccess) {
             _openHome(context);
           } else if (sts.isFailure) {

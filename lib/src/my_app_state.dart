@@ -4,25 +4,30 @@ import 'package:formz/formz.dart';
 
 class MyAppState extends Equatable {
   const MyAppState({
-    this.statusInsetUser = FormzSubmissionStatus.initial,
+    this.statusInsertUser = FormzSubmissionStatus.initial,
+    this.statusLoadListUser = FormzSubmissionStatus.initial,
     this.users = const <User>[],
   });
 
-  final FormzSubmissionStatus statusInsetUser;
+  final FormzSubmissionStatus statusInsertUser;
+  final FormzSubmissionStatus statusLoadListUser;
   final List<User> users;
 
   MyAppState copyWith({
-    FormzSubmissionStatus? statusInsetUser,
+    FormzSubmissionStatus? statusInsertUser,
+    FormzSubmissionStatus? statusLoadListUser,
     List<User>? users,
   }) =>
       MyAppState(
-        statusInsetUser: statusInsetUser ?? this.statusInsetUser,
+        statusInsertUser: statusInsertUser ?? this.statusInsertUser,
+        statusLoadListUser: statusLoadListUser ?? this.statusLoadListUser,
         users: users ?? this.users,
       );
 
   @override
   List<Object?> get props => [
-        statusInsetUser,
+        statusInsertUser,
+        statusLoadListUser,
         users,
       ];
 }

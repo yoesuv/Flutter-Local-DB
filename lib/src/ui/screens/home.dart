@@ -40,7 +40,9 @@ class _HomeState extends State<Home> {
   Widget _buildScreen() {
     return BlocBuilder<MyAppBloc, MyAppState>(
       bloc: _myAppBloc,
-      buildWhen: (previous, current) => previous.users != current.users,
+      buildWhen: (previous, current) =>
+          previous.statusLoadListUser != current.statusLoadListUser ||
+          previous.users != current.users,
       builder: (context, state) {
         return _buildList(state.users);
       },
