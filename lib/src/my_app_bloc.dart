@@ -4,11 +4,11 @@ import 'package:flutter_local_db/src/my_app_state.dart';
 
 class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
   MyAppBloc() : super(const MyAppState()) {
-    on<MyAppInsertUserEvent>(_onInsertUser);
+    on<MyAppInitUserEvent>(_onInitUser);
   }
 
-  void _onInsertUser(
-    MyAppInsertUserEvent event,
+  void _onInitUser(
+      MyAppInitUserEvent event,
     Emitter<MyAppState> emit,
   ) {}
 }

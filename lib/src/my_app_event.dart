@@ -5,4 +5,4 @@ abstract class MyAppEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class MyAppInsertUserEvent extends MyAppEvent {}
+class MyAppInitUserEvent extends MyAppEvent {}
