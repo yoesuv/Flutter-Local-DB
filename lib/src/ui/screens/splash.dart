@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
+import 'package:flutter_local_db/src/core/events/splash_event.dart';
+import 'package:flutter_local_db/src/core/states/splash_state.dart';
 import 'package:flutter_local_db/src/my_app_bloc.dart';
 import 'package:flutter_local_db/src/my_app_event.dart';
 import 'package:flutter_local_db/src/my_app_state.dart';
@@ -20,12 +23,14 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   MyAppBloc? _myAppBloc;
+  SplashBloc? _bloc;
 
   @override
   void initState() {
     super.initState();
     _myAppBloc = context.read<MyAppBloc>();
-    _myAppBloc?.add(MyAppInitUserEvent());
+    _bloc = context.read<SplashBloc>();
+    _bloc?.add(SplashEventInit());
   }
 
   @override
@@ -43,19 +48,29 @@ class _SplashState extends State<Splash> {
             _openHome(context);
           }
         },
-        child: _splash(),
+        child: BlocListener<SplashBloc, SplashState>(
+          bloc: _bloc,
+          listenWhen: (previous, current) => previous.status != current.status,
+          listener: (context, state) {
+            if (state.status.isSuccess) {
+              _myAppBloc?.add(MyAppInitUserEvent(
+                users: state.users,
+              ));
+            }
+          },
+          child: _splash(),
+        ),
       ),
     );
   }
 
   Widget _splash() {
     return Center(
-      child: BlocBuilder<MyAppBloc, MyAppState>(
-        bloc: _myAppBloc,
-        buildWhen: (previous, current) =>
-            previous.statusInsetUser != current.statusInsetUser,
+      child: BlocBuilder<SplashBloc, SplashState>(
+        bloc: _bloc,
+        buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
-          final sts = state.statusInsetUser;
+          final sts = state.status;
           if (sts.isSuccess) {
             return const TextSplash("Init Data Done");
           } else if (sts.isFailure) {
