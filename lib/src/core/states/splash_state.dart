@@ -1,27 +1,28 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
+import 'package:formz/formz.dart';
 
-abstract class SplashState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+class SplashState extends Equatable {
+  const SplashState({
+    this.status = FormzSubmissionStatus.initial,
+    this.users = const <User>[],
+  });
 
-class SplashStateInit extends SplashState {}
+  final FormzSubmissionStatus status;
+  final List<User> users;
 
-class SplashStateSuccess extends SplashState {
-  final List<User> listUser;
-
-  SplashStateSuccess({required this.listUser});
-
-  @override
-  List<Object> get props => [listUser];
-}
-
-class SplashStateFailed extends SplashState {
-  final Exception e;
-
-  SplashStateFailed(this.e);
+  SplashState copyWith({
+    FormzSubmissionStatus? status,
+    List<User>? users,
+  }) =>
+      SplashState(
+        status: status ?? this.status,
+        users: users ?? this.users,
+      );
 
   @override
-  List<Object> get props => [e];
+  List<Object?> get props => [
+        status,
+        users,
+      ];
 }

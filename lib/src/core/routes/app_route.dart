@@ -15,7 +15,7 @@ class AppRoute {
         builder: (context) {
           return BlocProvider(
               create: (context) => SplashBloc(),
-              child: Splash()
+              child: const Splash()
           );
         }
       );
@@ -24,7 +24,7 @@ class AppRoute {
           builder: (context) {
             return BlocProvider(
                 create: (context) => HomeBloc(),
-                child: Home()
+                child: const Home()
             );
           }
       );
