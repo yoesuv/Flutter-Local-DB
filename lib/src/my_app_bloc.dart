@@ -10,6 +10,7 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
   MyAppBloc() : super(const MyAppState()) {
     on<MyAppInitUserEvent>(_onInitUser);
     on<MyAppLoadUserEvent>(_onLoadUser);
+    on<MyAppDeleteUserEvent>(_onDeleteUser);
   }
 
   void _onInitUser(
@@ -36,9 +37,15 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     Emitter<MyAppState> emit,
   ) async {
     final users = await _dbUserRepository.getUsers();
-    print("MyAppBloc # users count ${users.length}");
     emit(state.copyWith(
       users: users,
     ));
+  }
+
+  void _onDeleteUser(
+    MyAppDeleteUserEvent event,
+    Emitter<MyAppState> emit,
+  ) async {
+    print("MyAppBloc # DELETE USER ${event.user.toJson()}");
   }
 }

@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
       itemCount: users.length,
       itemBuilder: (BuildContext context, int index) {
         return ItemUser(users[index], (User user) {
-
+          _myAppBloc?.add(MyAppDeleteUserEvent(user: user));
         });
       },
     );
