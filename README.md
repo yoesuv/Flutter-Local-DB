@@ -21,11 +21,8 @@ Tools • Dart 3.3.1 • DevTools 2.31.1
 | ---- | ---- | ---- | ---- |
 
 #### List Library
-- [Build Resolvers](https://pub.dev/packages/build_resolvers)
-- [Build Runner](https://pub.dev/packages/build_runner)
 - [Dio](https://pub.dev/packages/dio)
 - [Equatable](https://pub.dev/packages/equatable)
 - [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
-- [Hive](https://pub.dev/packages/hive)
-- [Hive Flutter](https://pub.dev/packages/hive_flutter)
+- [Isar](https://pub.dev/packages/isar)
 - [Path Provider](https://pub.dev/packages/path_provider)
