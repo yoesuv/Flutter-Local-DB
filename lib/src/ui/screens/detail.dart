@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_db/src/core/models/user_model.dart';
+
+class DetailArgs {
+  final int id;
+  DetailArgs({required this.id});
+}
 
 class Detail extends StatelessWidget {
-
   static const routeName = 'detail';
 
-  const Detail(this._user, {super.key});
+  const Detail({super.key, required this.args});
 
-  final User _user;
+  final DetailArgs args;
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +24,33 @@ class Detail extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Id : ${_user.id}'),
-            Text('Name : ${_user.name}'),
-            Text('Username : ${_user.username}'),
-            Text('Email : ${_user.email}'),
-            const Text('Address', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('Street : ${_user.address?.street}'),
-            Text('Suite : ${_user.address?.suite}'),
-            Text('City : ${_user.address?.city}'),
-            Text('Zip Code : ${_user.address?.zipcode}'),
-            Text('Geo : ${_user.address?.geo?.lat}/${_user.address?.geo?.lng}'),
-            Text('Phone : ${_user.phone}'),
-            Text('Website : ${_user.website}'),
-            const Text('Company', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('Name : ${_user.company?.name}'),
-            Text('Catch Phrase : ${_user.company?.catchPhrase}'),
-            Text('Business : ${_user.company?.bs}'),
+            Text('Id : ${args.id}'),
+            Text('Name : '),
+            Text('Username : '),
+            Text('Email : '),
+            const SizedBox(height: 8),
+            const Text(
+              'Address',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('Street : '),
+            Text('Suite : '),
+            Text('City : '),
+            Text('Zip Code :'),
+            Text('Geo : '),
+            Text('Phone : '),
+            Text('Website : '),
+            const SizedBox(height: 8),
+            const Text(
+              'Company',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('Name : '),
+            Text('Catch Phrase : '),
+            Text('Business : '),
           ],
         ),
       ),
     );
   }
-
 }

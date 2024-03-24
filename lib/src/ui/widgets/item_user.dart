@@ -21,7 +21,9 @@ class ItemUser extends StatelessWidget {
         onTap: () => Navigator.pushNamed(
           context,
           Detail.routeName,
-          arguments: _user,
+          arguments: DetailArgs(
+            id: _user.id ?? 0,
+          ),
         ),
         child: Container(
           padding: const EdgeInsets.only(top: 8),
