@@ -1,10 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/core/repositories/app_repository.dart';
 import 'package:flutter_local_db/src/core/repositories/db_user_repository.dart';
 import 'package:flutter_local_db/src/my_app_event.dart';
 import 'package:flutter_local_db/src/my_app_state.dart';
 import 'package:formz/formz.dart';
 
 class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
+  final _appRepository = AppRepository();
   final _dbUserRepository = DbUserRepository();
 
   MyAppBloc() : super(const MyAppState()) {
@@ -21,7 +23,8 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
       statusInsertUser: FormzSubmissionStatus.inProgress,
     ));
     try {
-      await _dbUserRepository.saveData(event.users);
+      final users = await _appRepository.getUser();
+      await _dbUserRepository.saveData(users);
       emit(state.copyWith(
         statusInsertUser: FormzSubmissionStatus.success,
       ));

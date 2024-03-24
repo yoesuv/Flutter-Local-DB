@@ -6,12 +6,7 @@ abstract class MyAppEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class MyAppInitUserEvent extends MyAppEvent {
-  MyAppInitUserEvent({required this.users});
-  final List<User> users;
-  @override
-  List<Object?> get props => [users];
-}
+class MyAppInitUserEvent extends MyAppEvent {}
 
 class MyAppLoadListUserEvent extends MyAppEvent {}
 
