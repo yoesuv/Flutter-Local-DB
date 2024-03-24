@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/ui/screens/detail.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
@@ -10,8 +8,7 @@ class AppRoute {
   static Route<dynamic> routes(RouteSettings settings) {
     if (settings.name == '/') {
       return MaterialPageRoute(builder: (context) {
-        return BlocProvider(
-            create: (context) => SplashBloc(), child: const Splash());
+        return const Splash();
       });
     } else if (settings.name == Home.routeName) {
       return MaterialPageRoute(builder: (context) {
