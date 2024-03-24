@@ -18,6 +18,16 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Local DB',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.teal,
+            titleTextStyle: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+          ),
           useMaterial3: true,
         ),
         onGenerateRoute: AppRoute.routes,
