@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/my_app_bloc.dart';
+import 'package:flutter_local_db/src/my_app_event.dart';
 
 class DetailArgs {
   final int id;
   DetailArgs({required this.id});
 }
 
-class Detail extends StatelessWidget {
+class Detail extends StatefulWidget {
   static const routeName = 'detail';
 
   const Detail({super.key, required this.args});
 
   final DetailArgs args;
+
+  @override
+  State<StatefulWidget> createState() {
+    return _DetailState();
+  }
+}
+
+class _DetailState extends State<Detail> {
+
+  MyAppBloc? _myAppBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _myAppBloc = context.read<MyAppBloc>();
+    _myAppBloc?.add(MyAppGetUserEvent(id: widget.args.id));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +44,7 @@ class Detail extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Id : ${args.id}'),
+            Text('Id : ${widget.args.id}'),
             Text('Name : '),
             Text('Username : '),
             Text('Email : '),

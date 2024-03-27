@@ -13,6 +13,7 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     on<MyAppInitUserEvent>(_onInitUser);
     on<MyAppLoadListUserEvent>(_onLoadListUser);
     on<MyAppDeleteUserEvent>(_onDeleteUser);
+    on<MyAppGetUserEvent>(_onGetUser);
   }
 
   void _onInitUser(
@@ -75,4 +76,9 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
       ));
     }
   }
+
+  void _onGetUser(
+    MyAppGetUserEvent event,
+    Emitter<MyAppState> emit,
+  ) async {}
 }
