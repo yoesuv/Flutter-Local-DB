@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/my_app_bloc.dart';
 import 'package:flutter_local_db/src/my_app_event.dart';
+import 'package:flutter_local_db/src/my_app_state.dart';
+import 'package:formz/formz.dart';
 
 class DetailArgs {
   final int id;
@@ -22,7 +25,6 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
-
   MyAppBloc? _myAppBloc;
 
   @override
@@ -40,37 +42,57 @@ class _DetailState extends State<Detail> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Id : ${widget.args.id}'),
-            Text('Name : '),
-            Text('Username : '),
-            Text('Email : '),
-            const SizedBox(height: 8),
-            const Text(
-              'Address',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text('Street : '),
-            Text('Suite : '),
-            Text('City : '),
-            Text('Zip Code :'),
-            Text('Geo : '),
-            Text('Phone : '),
-            Text('Website : '),
-            const SizedBox(height: 8),
-            const Text(
-              'Company',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text('Name : '),
-            Text('Catch Phrase : '),
-            Text('Business : '),
-          ],
+        child: BlocBuilder<MyAppBloc, MyAppState>(
+          bloc: _myAppBloc,
+          buildWhen: (previous, current) =>
+              previous.statusLoadUser != current.statusLoadUser,
+          builder: (context, state) {
+            if (state.statusLoadUser.isSuccess) {
+              return _buildUser(state.user);
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
         ),
       ),
+    );
+  }
+
+  Widget _buildUser(User? user) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text('Id : ${widget.args.id}'),
+        Text('Name : ${user?.name}'),
+        Text('Username : ${user?.username}'),
+        Text('Email : ${user?.email}'),
+        const SizedBox(height: 8),
+        const Text(
+          'Address',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text('Street : ${user?.address?.street}'),
+        Text('Suite : ${user?.address?.suite}'),
+        Text('City : ${user?.address?.city}'),
+        Text('Zip Code : ${user?.address?.zipcode}'),
+        Text('Geo : ${user?.address?.geo?.lat}/${user?.address?.geo?.lng}'),
+        Text('Phone : ${user?.phone}'),
+        Text('Website : ${user?.website}'),
+        const SizedBox(height: 8),
+        const Text(
+          'Company',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text('Name : ${user?.company?.name}'),
+        Text('Catch Phrase : ${user?.company?.catchPhrase}'),
+        Text('Business : ${user?.company?.bs}'),
+      ],
     );
   }
 }
