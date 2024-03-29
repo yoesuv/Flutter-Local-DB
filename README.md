@@ -2,14 +2,14 @@
 
 Save data from API to local Database. sample from ```http://jsonplaceholder.typicode.com/users/```
 
-Download apk file [here](https://e.pcloud.link/publink/show?code=XZsxtWZudHDiMuStbH6DwI7sKeli5WRvDGV)
+Download apk file [here](https://e.pcloud.link/publink/show?code=XZS1B9ZHL7yTqNOQhu91eJX7a7PSyiYXloV)
 
 #### Flutter Dependencies ####
 ```
-Flutter 3.13.6 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision ead455963c (10 days ago) • 2023-09-26 18:28:17 -0700
-Engine • revision a794cf2681
-Tools • Dart 3.1.3 • DevTools 2.25.0
+Flutter 3.19.3 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision ba39319843 (3 weeks ago) • 2024-03-07 15:22:21 -0600
+Engine • revision 2e4ba9c6fb
+Tools • Dart 3.3.1 • DevTools 2.31.1
 ```
 
 #### Screenshot Android ####
@@ -21,11 +21,8 @@ Tools • Dart 3.1.3 • DevTools 2.25.0
 | ---- | ---- | ---- | ---- |
 
 #### List Library
-- [Build Resolvers](https://pub.dev/packages/build_resolvers)
-- [Build Runner](https://pub.dev/packages/build_runner)
 - [Dio](https://pub.dev/packages/dio)
 - [Equatable](https://pub.dev/packages/equatable)
 - [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
-- [Hive](https://pub.dev/packages/hive)
-- [Hive Flutter](https://pub.dev/packages/hive_flutter)
+- [Isar](https://pub.dev/packages/isar)
 - [Path Provider](https://pub.dev/packages/path_provider)

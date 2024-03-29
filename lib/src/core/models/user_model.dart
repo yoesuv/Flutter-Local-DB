@@ -1,38 +1,33 @@
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
+
 import 'address_model.dart';
 import 'company_model.dart';
+import 'geo_model.dart';
 
 part 'user_model.g.dart';
 
-@HiveType(typeId: 2)
-class User extends HiveObject{
+@collection
+class User {
 
-  @HiveField(0, defaultValue: 0)
-  int? id;
-  @HiveField(1)
+  Id? id;
   String? name;
-  @HiveField(2)
   String? username;
-  @HiveField(3)
   String? email;
-  @HiveField(4)
   Address? address;
-  @HiveField(5)
   String? phone;
-  @HiveField(6)
   String? website;
-  @HiveField(7)
   Company? company;
 
-  User(
-      {this.id,
-        this.name,
-        this.username,
-        this.email,
-        this.address,
-        this.phone,
-        this.website,
-        this.company});
+  User({
+    this.id,
+    this.name,
+    this.username,
+    this.email,
+    this.address,
+    this.phone,
+    this.website,
+    this.company,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,11 +35,11 @@ class User extends HiveObject{
     username = json['username'];
     email = json['email'];
     address =
-    json['address'] != null ? Address.fromJson(json['address']) : null;
+        json['address'] != null ? Address.fromJson(json['address']) : null;
     phone = json['phone'];
     website = json['website'];
     company =
-    json['company'] != null ? Company.fromJson(json['company']) : null;
+        json['company'] != null ? Company.fromJson(json['company']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -67,5 +62,4 @@ class User extends HiveObject{
   static List<User> buildListFromJson(List<dynamic> json) {
     return json.map((dynamic x) => User.fromJson(x)).toList();
   }
-
 }

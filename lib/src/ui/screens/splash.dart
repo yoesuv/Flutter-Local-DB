@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_db/src/core/blocs/splash_bloc.dart';
-import 'package:flutter_local_db/src/core/events/splash_event.dart';
-import 'package:flutter_local_db/src/core/states/splash_state.dart';
+import 'package:flutter_local_db/src/my_app_bloc.dart';
+import 'package:flutter_local_db/src/my_app_event.dart';
+import 'package:flutter_local_db/src/my_app_state.dart';
 import 'package:flutter_local_db/src/ui/screens/home.dart';
 import 'package:flutter_local_db/src/ui/widgets/text_splash.dart';
+import 'package:formz/formz.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -18,43 +19,52 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  late SplashBloc _bloc;
+  MyAppBloc? _myAppBloc;
 
   @override
   void initState() {
     super.initState();
-    _bloc = context.read<SplashBloc>();
-    _bloc.add(SplashEventInit());
+    _myAppBloc = context.read<MyAppBloc>();
+    _myAppBloc?.add(MyAppInitUserEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _splash());
-  }
-
-  Widget _splash() {
-    return BlocBuilder<SplashBloc, SplashState>(
-      builder: (context, SplashState state) {
-        if (state is SplashStateSuccess) {
-          _openHome(context);
-        } else if (state is SplashStateFailed) {
-          _openHome(context);
-        }
-        return Center(
-          child: _textSplash(state),
-        );
-      },
+    return Scaffold(
+      body: BlocListener<MyAppBloc, MyAppState>(
+        bloc: _myAppBloc,
+        listenWhen: (previous, current) =>
+            previous.statusInsertUser != current.statusInsertUser,
+        listener: (context, state) {
+          final sts = state.statusInsertUser;
+          if (sts.isSuccess) {
+            _openHome(context);
+          } else if (sts.isFailure) {
+            _openHome(context);
+          }
+        },
+        child: _splash(),
+      ),
     );
   }
 
-  Widget _textSplash(SplashState state) {
-    if (state is SplashStateSuccess) {
-      return const TextSplash("Init Data Done");
-    } else if (state is SplashStateFailed) {
-      return const TextSplash("Offline Mode");
-    } else {
-      return const TextSplash("Flutter Local DB");
-    }
+  Widget _splash() {
+    return Center(
+      child: BlocBuilder<MyAppBloc, MyAppState>(
+        bloc: _myAppBloc,
+        buildWhen: (previous, current) =>
+            previous.statusInsertUser != current.statusInsertUser,
+        builder: (context, state) {
+          final sts = state.statusInsertUser;
+          if (sts.isSuccess) {
+            return const TextSplash("Init Data Done");
+          } else if (sts.isFailure) {
+            return const TextSplash("Offline Mode");
+          }
+          return const TextSplash("Flutter Local DB");
+        },
+      ),
+    );
   }
 
   void _openHome(BuildContext context) {
