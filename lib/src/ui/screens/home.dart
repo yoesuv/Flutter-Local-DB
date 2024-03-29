@@ -5,6 +5,7 @@ import 'package:flutter_local_db/src/my_app_bloc.dart';
 import 'package:flutter_local_db/src/my_app_event.dart';
 import 'package:flutter_local_db/src/my_app_state.dart';
 import 'package:flutter_local_db/src/ui/widgets/item_user.dart';
+import 'package:formz/formz.dart';
 
 class Home extends StatefulWidget {
   static const String routeName = 'home';
@@ -33,7 +34,21 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('List User'),
       ),
-      body: _buildScreen(),
+      body: BlocListener<MyAppBloc, MyAppState>(
+        listenWhen: (previous, current) =>
+            previous.statusDeleteUser != current.statusDeleteUser,
+        listener: (context, state) {
+          if (state.statusDeleteUser.isSuccess) {
+            const snack = SnackBar(
+              content: Text("Delete Success"),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 1),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snack);
+          }
+        },
+        child: _buildScreen(),
+      ),
     );
   }
 
@@ -41,8 +56,7 @@ class _HomeState extends State<Home> {
     return BlocBuilder<MyAppBloc, MyAppState>(
       bloc: _myAppBloc,
       buildWhen: (previous, current) =>
-          previous.statusLoadListUser != current.statusLoadListUser ||
-          previous.statusDeleteUser != current.statusDeleteUser,
+          previous.statusLoadListUser != current.statusLoadListUser,
       builder: (context, state) {
         return _buildList(state.users);
       },
