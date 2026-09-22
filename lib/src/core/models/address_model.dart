@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 import 'geo_model.dart';
 
 part 'address_model.g.dart';

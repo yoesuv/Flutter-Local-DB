@@ -1,6 +1,6 @@
 import 'package:flutter_local_db/src/core/models/user_model.dart';
 import 'package:flutter_local_db/src/core/repositories/db_repository.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 class DbUserRepository extends DbRepository<User> {
   DbUserRepository() : super(UserSchema);
