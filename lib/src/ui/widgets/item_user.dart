@@ -21,9 +21,7 @@ class ItemUser extends StatelessWidget {
         onTap: () => Navigator.pushNamed(
           context,
           Detail.routeName,
-          arguments: DetailArgs(
-            id: _user.id ?? 0,
-          ),
+          arguments: DetailArgs(id: _user.id ?? 0),
         ),
         child: Container(
           padding: const EdgeInsets.only(top: 8),
@@ -39,7 +37,7 @@ class ItemUser extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Divider(thickness: 1, height: 1)
+              const Divider(thickness: 1, height: 1),
             ],
           ),
         ),
@@ -56,7 +54,7 @@ class ItemUser extends StatelessWidget {
         children: <Widget>[
           Icon(Icons.delete, color: Colors.white),
           Text('Delete', style: TextStyle(color: Colors.white)),
-          SizedBox(width: 8)
+          SizedBox(width: 8),
         ],
       ),
     );

@@ -69,16 +69,13 @@ class _SplashState extends State<Splash> {
 
   void _openHome(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Timer(
-        const Duration(seconds: 1),
-        () {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Home.routeName,
-            ModalRoute.withName('/'),
-          );
-        },
-      );
+      Timer(const Duration(seconds: 1), () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          Home.routeName,
+          ModalRoute.withName('/'),
+        );
+      });
     });
   }
 }

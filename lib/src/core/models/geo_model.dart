@@ -4,7 +4,6 @@ part 'geo_model.g.dart';
 
 @embedded
 class Geo {
-
   String? lat;
   String? lng;
 

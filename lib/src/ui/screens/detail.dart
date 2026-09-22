@@ -37,9 +37,7 @@ class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detail User'),
-      ),
+      appBar: AppBar(title: const Text('Detail User')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<MyAppBloc, MyAppState>(
@@ -50,9 +48,7 @@ class _DetailState extends State<Detail> {
             if (state.statusLoadUser.isSuccess) {
               return _buildUser(state.user);
             }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
@@ -69,12 +65,7 @@ class _DetailState extends State<Detail> {
         Text('Username : ${user?.username}'),
         Text('Email : ${user?.email}'),
         const SizedBox(height: 8),
-        const Text(
-          'Address',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const Text('Address', style: TextStyle(fontWeight: FontWeight.bold)),
         Text('Street : ${user?.address?.street}'),
         Text('Suite : ${user?.address?.suite}'),
         Text('City : ${user?.address?.city}'),
@@ -83,12 +74,7 @@ class _DetailState extends State<Detail> {
         Text('Phone : ${user?.phone}'),
         Text('Website : ${user?.website}'),
         const SizedBox(height: 8),
-        const Text(
-          'Company',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const Text('Company', style: TextStyle(fontWeight: FontWeight.bold)),
         Text('Name : ${user?.company?.name}'),
         Text('Catch Phrase : ${user?.company?.catchPhrase}'),
         Text('Business : ${user?.company?.bs}'),

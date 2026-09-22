@@ -16,23 +16,14 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     on<MyAppGetUserEvent>(_onGetUser);
   }
 
-  void _onInitUser(
-    MyAppInitUserEvent event,
-    Emitter<MyAppState> emit,
-  ) async {
-    emit(state.copyWith(
-      statusInsertUser: FormzSubmissionStatus.inProgress,
-    ));
+  void _onInitUser(MyAppInitUserEvent event, Emitter<MyAppState> emit) async {
+    emit(state.copyWith(statusInsertUser: FormzSubmissionStatus.inProgress));
     try {
       final users = await _appRepository.getUser();
       await _dbUserRepository.saveData(users);
-      emit(state.copyWith(
-        statusInsertUser: FormzSubmissionStatus.success,
-      ));
+      emit(state.copyWith(statusInsertUser: FormzSubmissionStatus.success));
     } catch (e) {
-      emit(state.copyWith(
-        statusInsertUser: FormzSubmissionStatus.failure,
-      ));
+      emit(state.copyWith(statusInsertUser: FormzSubmissionStatus.failure));
     }
   }
 
@@ -40,19 +31,17 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     MyAppLoadListUserEvent event,
     Emitter<MyAppState> emit,
   ) async {
-    emit(state.copyWith(
-      statusLoadListUser: FormzSubmissionStatus.inProgress,
-    ));
+    emit(state.copyWith(statusLoadListUser: FormzSubmissionStatus.inProgress));
     try {
       final users = await _dbUserRepository.getUsers();
-      emit(state.copyWith(
-        statusLoadListUser: FormzSubmissionStatus.success,
-        users: users,
-      ));
+      emit(
+        state.copyWith(
+          statusLoadListUser: FormzSubmissionStatus.success,
+          users: users,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        statusLoadListUser: FormzSubmissionStatus.failure,
-      ));
+      emit(state.copyWith(statusLoadListUser: FormzSubmissionStatus.failure));
     }
   }
 
@@ -60,40 +49,33 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     MyAppDeleteUserEvent event,
     Emitter<MyAppState> emit,
   ) async {
-    emit(state.copyWith(
-      statusDeleteUser: FormzSubmissionStatus.inProgress,
-    ));
+    emit(state.copyWith(statusDeleteUser: FormzSubmissionStatus.inProgress));
     try {
       await _dbUserRepository.delete(event.user);
       final users = await _dbUserRepository.getUsers();
-      emit(state.copyWith(
-        statusDeleteUser: FormzSubmissionStatus.success,
-        users: users,
-      ));
+      emit(
+        state.copyWith(
+          statusDeleteUser: FormzSubmissionStatus.success,
+          users: users,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        statusDeleteUser: FormzSubmissionStatus.failure,
-      ));
+      emit(state.copyWith(statusDeleteUser: FormzSubmissionStatus.failure));
     }
   }
 
-  void _onGetUser(
-    MyAppGetUserEvent event,
-    Emitter<MyAppState> emit,
-  ) async {
-    emit(state.copyWith(
-      statusLoadUser: FormzSubmissionStatus.inProgress,
-    ));
+  void _onGetUser(MyAppGetUserEvent event, Emitter<MyAppState> emit) async {
+    emit(state.copyWith(statusLoadUser: FormzSubmissionStatus.inProgress));
     try {
       final user = await _dbUserRepository.getUser(event.id);
-      emit(state.copyWith(
-        statusLoadUser: FormzSubmissionStatus.success,
-        user: user,
-      ));
+      emit(
+        state.copyWith(
+          statusLoadUser: FormzSubmissionStatus.success,
+          user: user,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        statusLoadUser: FormzSubmissionStatus.failure,
-      ));
+      emit(state.copyWith(statusLoadUser: FormzSubmissionStatus.failure));
     }
   }
 }

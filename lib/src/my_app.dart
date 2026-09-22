@@ -9,11 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<MyAppBloc>(
-          create: (context) => MyAppBloc(),
-        ),
-      ],
+      providers: [BlocProvider<MyAppBloc>(create: (context) => MyAppBloc())],
       child: MaterialApp(
         title: 'Flutter Local DB',
         theme: ThemeData(
@@ -24,9 +20,7 @@ class MyApp extends StatelessWidget {
               fontSize: 22,
               fontWeight: FontWeight.w500,
             ),
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
+            iconTheme: IconThemeData(color: Colors.white),
           ),
           useMaterial3: true,
         ),

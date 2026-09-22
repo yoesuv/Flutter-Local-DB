@@ -1,12 +1,9 @@
-
 import 'package:isar_community/isar.dart';
 
 part 'company_model.g.dart';
 
-
 @embedded
 class Company {
-
   String? name;
   String? catchPhrase;
   String? bs;
@@ -26,5 +23,4 @@ class Company {
     data['bs'] = bs;
     return data;
   }
-
 }

@@ -31,9 +31,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('List User'),
-      ),
+      appBar: AppBar(title: const Text('List User')),
       body: BlocListener<MyAppBloc, MyAppState>(
         listenWhen: (previous, current) =>
             previous.statusDeleteUser != current.statusDeleteUser,

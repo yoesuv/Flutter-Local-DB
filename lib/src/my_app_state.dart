@@ -26,23 +26,22 @@ class MyAppState extends Equatable {
     FormzSubmissionStatus? statusLoadUser,
     List<User>? users,
     User? user,
-  }) =>
-      MyAppState(
-        statusInsertUser: statusInsertUser ?? this.statusInsertUser,
-        statusLoadListUser: statusLoadListUser ?? this.statusLoadListUser,
-        statusDeleteUser: statusDeleteUser ?? this.statusDeleteUser,
-        statusLoadUser: statusLoadUser ?? this.statusLoadUser,
-        users: users ?? this.users,
-        user: user ?? this.user,
-      );
+  }) => MyAppState(
+    statusInsertUser: statusInsertUser ?? this.statusInsertUser,
+    statusLoadListUser: statusLoadListUser ?? this.statusLoadListUser,
+    statusDeleteUser: statusDeleteUser ?? this.statusDeleteUser,
+    statusLoadUser: statusLoadUser ?? this.statusLoadUser,
+    users: users ?? this.users,
+    user: user ?? this.user,
+  );
 
   @override
   List<Object?> get props => [
-        statusInsertUser,
-        statusLoadListUser,
-        statusDeleteUser,
-        statusLoadUser,
-        users,
-        user,
-      ];
+    statusInsertUser,
+    statusLoadListUser,
+    statusDeleteUser,
+    statusLoadUser,
+    users,
+    user,
+  ];
 }

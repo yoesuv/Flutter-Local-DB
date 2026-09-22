@@ -3,7 +3,6 @@ import 'package:isar_community/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class DbRepository<T> {
-
   final CollectionSchema<T> collectionSchema;
   Isar? isar;
 
@@ -17,5 +16,4 @@ abstract class DbRepository<T> {
     debugPrint("DbRepository # path $path");
     isar ??= await Isar.open([collectionSchema], directory: path);
   }
-
 }
