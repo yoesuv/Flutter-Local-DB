@@ -6,25 +6,27 @@ class DbUserRepository extends DbRepository<User> {
   DbUserRepository() : super(UserSchema);
 
   Future<void> saveData(List<User> data) async {
-    await isar?.writeTxn(() async {
-      await isar?.users.clear();
-      await isar?.users.putAll(data);
+    final db = await isarAsync;
+    await db.writeTxn(() async {
+      await db.users.clear();
+      await db.users.putAll(data);
     });
   }
 
   Future<List<User>> getUsers() async {
-    final db = isar?.users;
-    return await db?.where().findAll() ?? [];
+    final db = await isarAsync;
+    return db.users.where().findAll();
   }
 
   Future<User?> getUser(int id) async {
-    final db = isar?.users;
-    return await db?.get(id);
+    final db = await isarAsync;
+    return db.users.get(id);
   }
 
   Future<void> delete(User user) async {
-    await isar?.writeTxn(() async {
-      await isar?.users.delete(user.id ?? 0);
+    final db = await isarAsync;
+    await db.writeTxn(() async {
+      await db.users.delete(user.id ?? 0);
     });
   }
 }
