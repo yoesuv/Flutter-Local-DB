@@ -10,8 +10,8 @@ class Geo {
   Geo({this.lat, this.lng});
 
   Geo.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'];
-    lng = json['lng'];
+    lat = json['lat']?.toString();
+    lng = json['lng']?.toString();
   }
 
   Map<String, dynamic> toJson() {

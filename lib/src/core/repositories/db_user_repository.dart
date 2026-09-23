@@ -7,7 +7,7 @@ class DbUserRepository extends DbRepository<User> {
 
   Future<void> saveData(List<User> data) async {
     await isar?.writeTxn(() async {
-      await isar?.clear();
+      await isar?.users.clear();
       await isar?.users.putAll(data);
     });
   }
