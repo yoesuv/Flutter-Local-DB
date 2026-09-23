@@ -18,7 +18,16 @@ class AppRoute {
         },
       );
     } else if (settings.name == Detail.routeName) {
-      final args = settings.arguments as DetailArgs;
+      final args = settings.arguments;
+      if (args is! DetailArgs) {
+        return MaterialPageRoute(
+          builder: (context) {
+            return const Scaffold(
+              body: Center(child: Text('Missing arguments for detail route')),
+            );
+          },
+        );
+      }
       return MaterialPageRoute(
         builder: (context) {
           return Detail(args: args);

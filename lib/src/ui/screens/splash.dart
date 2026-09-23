@@ -20,12 +20,19 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   MyAppBloc? _myAppBloc;
+  Timer? _navigationTimer;
 
   @override
   void initState() {
     super.initState();
     _myAppBloc = context.read<MyAppBloc>();
     _myAppBloc?.add(MyAppInitUserEvent());
+  }
+
+  @override
+  void dispose() {
+    _navigationTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -69,7 +76,9 @@ class _SplashState extends State<Splash> {
 
   void _openHome(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Timer(const Duration(seconds: 1), () {
+      if (!mounted) return;
+      _navigationTimer = Timer(const Duration(seconds: 1), () {
+        if (!mounted) return;
         Navigator.pushNamedAndRemoveUntil(
           context,
           Home.routeName,

@@ -61,6 +61,13 @@ class User {
   }
 
   static List<User> buildListFromJson(List<dynamic> json) {
-    return json.map((dynamic x) => User.fromJson(x)).toList();
+    return json.map((dynamic x) {
+      if (x is! Map<String, dynamic>) {
+        throw FormatException(
+          'User entry is not a JSON object: ${x.runtimeType}',
+        );
+      }
+      return User.fromJson(x);
+    }).toList();
   }
 }

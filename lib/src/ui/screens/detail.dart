@@ -45,7 +45,27 @@ class _DetailState extends State<Detail> {
           buildWhen: (previous, current) =>
               previous.statusLoadUser != current.statusLoadUser,
           builder: (context, state) {
+            if (state.statusLoadUser.isFailure) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Failed to load user'),
+                    const SizedBox(height: 8),
+                    ElevatedButton(
+                      onPressed: () => _myAppBloc?.add(
+                        MyAppGetUserEvent(id: widget.args.id),
+                      ),
+                      child: const Text('Retry'),
+                    ),
+                  ],
+                ),
+              );
+            }
             if (state.statusLoadUser.isSuccess) {
+              if (state.user == null) {
+                return const Center(child: Text('User not found'));
+              }
               return _buildUser(state.user);
             }
             return const Center(child: CircularProgressIndicator());
