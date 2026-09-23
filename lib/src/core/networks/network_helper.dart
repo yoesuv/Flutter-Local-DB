@@ -17,13 +17,7 @@ class NetworkHelper {
 
   late Dio _dio;
 
-  Future<dynamic> get(String url) async {
-    dynamic response;
-    try {
-      response = await _dio.get<dynamic>(url);
-    } catch (err) {
-      rethrow;
-    }
-    return response;
+  Future<Response<dynamic>> get(String url) {
+    return _dio.get<dynamic>(url);
   }
 }
