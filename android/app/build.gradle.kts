@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("base")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
@@ -46,6 +47,10 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+}
+
+base {
+    archivesName = "com.yoesuv.flutter_local_db-v${flutter.versionName}"
 }
 
 kotlin {
