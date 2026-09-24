@@ -19,20 +19,22 @@ class MyAppState extends Equatable {
   final List<User> users;
   final User? user;
 
+  static const Object _unsetUser = Object();
+
   MyAppState copyWith({
     FormzSubmissionStatus? statusInsertUser,
     FormzSubmissionStatus? statusLoadListUser,
     FormzSubmissionStatus? statusDeleteUser,
     FormzSubmissionStatus? statusLoadUser,
     List<User>? users,
-    User? user,
+    Object? user = _unsetUser,
   }) => MyAppState(
     statusInsertUser: statusInsertUser ?? this.statusInsertUser,
     statusLoadListUser: statusLoadListUser ?? this.statusLoadListUser,
     statusDeleteUser: statusDeleteUser ?? this.statusDeleteUser,
     statusLoadUser: statusLoadUser ?? this.statusLoadUser,
     users: users ?? this.users,
-    user: user ?? this.user,
+    user: identical(user, _unsetUser) ? this.user : user as User?,
   );
 
   @override
