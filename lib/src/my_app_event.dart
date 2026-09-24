@@ -21,5 +21,5 @@ class MyAppDeleteUserEvent extends MyAppEvent {
   MyAppDeleteUserEvent({required this.user});
   final User user;
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [user.id, user.name];
 }
