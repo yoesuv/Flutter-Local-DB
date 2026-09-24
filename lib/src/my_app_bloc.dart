@@ -68,6 +68,10 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     emit(state.copyWith(statusLoadUser: FormzSubmissionStatus.inProgress));
     try {
       final user = await _dbUserRepository.getUser(event.id);
+      if (user == null) {
+        emit(state.copyWith(statusLoadUser: FormzSubmissionStatus.failure));
+        return;
+      }
       emit(
         state.copyWith(
           statusLoadUser: FormzSubmissionStatus.success,

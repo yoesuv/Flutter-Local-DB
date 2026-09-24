@@ -43,6 +43,13 @@ class _HomeState extends State<Home> {
               duration: Duration(seconds: 1),
             );
             ScaffoldMessenger.of(context).showSnackBar(snack);
+          } else if (state.statusDeleteUser.isFailure) {
+            const snack = SnackBar(
+              content: Text("Delete Failed"),
+              backgroundColor: Colors.red,
+              duration: Duration(seconds: 1),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snack);
           }
         },
         child: _buildScreen(),
@@ -57,16 +64,25 @@ class _HomeState extends State<Home> {
           previous.statusLoadListUser != current.statusLoadListUser ||
           previous.users != current.users,
       builder: (context, state) {
-        return _buildList(state.users);
+        return _buildList(state);
       },
     );
   }
 
-  Widget _buildList(List<User> users) {
+  Widget _buildList(MyAppState state) {
+    if (state.statusLoadListUser.isInProgress) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (state.statusLoadListUser.isFailure) {
+      return const Center(child: Text('Failed to load users'));
+    }
+    if (state.users.isEmpty) {
+      return const Center(child: Text('No users'));
+    }
     return ListView.builder(
-      itemCount: users.length,
+      itemCount: state.users.length,
       itemBuilder: (BuildContext context, int index) {
-        return ItemUser(users[index], (User user) {
+        return ItemUser(state.users[index], (User user) {
           _myAppBloc?.add(MyAppDeleteUserEvent(user: user));
         });
       },

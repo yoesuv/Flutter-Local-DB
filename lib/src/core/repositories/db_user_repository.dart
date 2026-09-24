@@ -24,9 +24,13 @@ class DbUserRepository extends DbRepository<User> {
   }
 
   Future<void> delete(User user) async {
+    final id = user.id;
+    if (id == null) {
+      throw ArgumentError('Cannot delete a user without an id');
+    }
     final db = await isarAsync;
     await db.writeTxn(() async {
-      await db.users.delete(user.id ?? 0);
+      await db.users.delete(id);
     });
   }
 }

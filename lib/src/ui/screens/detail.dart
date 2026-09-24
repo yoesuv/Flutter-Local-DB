@@ -63,10 +63,16 @@ class _DetailState extends State<Detail> {
               );
             }
             if (state.statusLoadUser.isSuccess) {
-              if (state.user == null) {
+              final user = state.user;
+              if (user == null) {
                 return const Center(child: Text('User not found'));
               }
-              return _buildUser(state.user);
+              if (user.id == widget.args.id) {
+                return _buildUser(user);
+              }
+              // Stale user from a previous load: keep the spinner until this
+              // screen's MyAppGetUserEvent completes.
+              return const Center(child: CircularProgressIndicator());
             }
             return const Center(child: CircularProgressIndicator());
           },
