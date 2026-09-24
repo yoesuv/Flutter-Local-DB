@@ -14,10 +14,10 @@ class Address {
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
 
   Address.fromJson(Map<String, dynamic> json) {
-    street = json['street'];
-    suite = json['suite'];
-    city = json['city'];
-    zipcode = json['zipcode'];
+    street = json['street'] as String?;
+    suite = json['suite'] as String?;
+    city = json['city'] as String?;
+    zipcode = json['zipcode'] as String?;
     geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
   }
 

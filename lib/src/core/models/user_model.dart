@@ -29,15 +29,15 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    username = json['username'];
-    email = json['email'];
+    id = json['id'] as int?;
+    name = json['name'] as String?;
+    username = json['username'] as String?;
+    email = json['email'] as String?;
     address = json['address'] != null
         ? Address.fromJson(json['address'])
         : null;
-    phone = json['phone'];
-    website = json['website'];
+    phone = json['phone'] as String?;
+    website = json['website'] as String?;
     company = json['company'] != null
         ? Company.fromJson(json['company'])
         : null;
