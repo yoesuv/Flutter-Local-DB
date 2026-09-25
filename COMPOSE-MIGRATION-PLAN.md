@@ -63,7 +63,7 @@
 DTOs + mappers, `UserApi`, `NetworkHelper`, Room (entities, `UserDao`, DB), `AppRepository`, `DbUserRepository`, `RepositoryException`, `ServiceLocator` (injectable interfaces like `AppRepository({NetworkHelper?})` today → constructor params).
 
 **P3 — ViewModel**
-`MyAppState` + `UiStatus`, `MyAppViewModel` with the four operations; unit-testable as plain coroutines (still no automated tests per constraint — manual only).
+`MyAppState` + `UiStatus`, `MyAppViewModel` with the four operations. Plain coroutines, no test code — per the standing constraint **no tests and no unit tests are created** (no test target, no test dependencies); verification is the P5 manual checklist only.
 
 **P4 — UI**
 Navigation graph, `SplashScreen` (timer + status text), `HomeScreen` (list, empty "No users", failure Retry, swipe-delete, snackbar), `DetailScreen` (all fields incl. address/company sections, stale-guard).
@@ -107,4 +107,4 @@ debugImplementation("com.squareup.okhttp3:logging-interceptor:<current>")
 - **Atomic replace:** `saveData` must run clear + insertAll inside one `@Transaction` DAO method — do not split into two DAO calls.
 - **One-shot UI events** (delete snackbar, splash navigation) should not be encoded in `MyAppState` to avoid re-firing on recomposition; expose a `SharedFlow<SideEffect>` from the ViewModel for those two cases only.
 - **Cleartext HTTP:** keep `network_security_config.xml` allowing cleartext for now; the REQUIREMENTS R5 https switch ports over as a one-line change.
-- **No tests:** per the standing constraint, P5 checklist replaces tests; CI gate is `assembleDebug`/`assembleRelease` compiling.
+- **No tests, no unit tests:** per the standing constraint, no test source sets, no JUnit/kotlin.test dependencies, no CI test steps — P5 checklist replaces them; CI gate is `assembleDebug`/`assembleRelease` compiling.

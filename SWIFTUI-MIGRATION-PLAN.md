@@ -32,7 +32,7 @@
 | Flutter source | Swift target |
 |---|---|
 | `lib/main.dart` | `FlutterLocalDbApp.swift` (`@main` App); portrait lock via Target → Deployment Info (iPhone, Portrait only) — no runtime try/catch needed |
-| `lib/src/my_app.dart` | `RootView`: teal-tinted theme helpers (`Color.teal` accent, UINavigationBarAppearance for the bar styling) |
+| `lib/src/my_app.dart` | `RootView`: teal-tinted theme helpers (`Color.teal` accent, UINavigationBarAppearance for the bar styling); **`.preferredColorScheme(.light)` pinned on the root** — the Flutter app defines no `darkTheme`, so it is light-only, and strict parity forbids a dark appearance appearing for free |
 | `lib/src/core/data/constants.dart` | `Constants.swift` (`baseURL`, `timeout: TimeInterval = 30`) |
 | `lib/src/core/errors/repository_exception.dart` | `struct RepositoryException: Error { let message: String; let cause: (any Error)? }` |
 | `lib/src/core/networks/network_helper.dart` | `NetworkHelper` (Alamofire `Session`: 30 s `timeoutIntervalForRequest`/`timeoutIntervalForResource`, custom `EventMonitor` for response logging) + `UserAPI` (`session.request("users")` → Decodable) |
@@ -63,7 +63,7 @@
 `ios-native/` Xcode project (or Swift Package + project via XcodeGen/Tuist if preferred), app entry, portrait-locked Info.plist, ATS exemption, teal accent. Empty `HomeView` placeholder.
 
 **P2 — Data layer**
-DTOs (incl. the Geo Double-or-String decoder), `NetworkHelper` + `UserAPI`, SwiftData models + container, `AppRepository`, `DbUserRepository`, `RepositoryException`. Repositories injected as protocols so the view-model is testable by hand.
+DTOs (incl. the Geo Double-or-String decoder), `NetworkHelper` + `UserAPI`, SwiftData models + container, `AppRepository`, `DbUserRepository`, `RepositoryException`. Repositories injected as protocols so implementations can be swapped by hand — **no test code is written**: no XCTest/Swift Testing targets, no unit tests (standing constraint); verification is the P5 manual checklist only.
 
 **P3 — ViewModel**
 `UiStatus`, `MyAppState`, `MyAppViewModel` with the four operations; one-shot side effects (delete toast, splash root swap) as dedicated `@Observable` fields, not inside `MyAppState`, so they don't re-fire on view updates.
@@ -79,7 +79,7 @@ Root splash/home switch, `HomeView` (list, empty, failure Retry, swipe-delete, t
 5. Detail loads from DB; Retry on failure; spinner until own load completes.
 6. Rotation locked to portrait; airplane-mode toggle mid-session → no crash, no auto-refresh (R4 intentionally not ported yet).
 7. **Release build on a real device** — replaces the old isar_community #68 guardrail entirely: native SwiftData has no fork-related release-only load failures, so this is now a routine smoke test.
-8. Dark mode and Dynamic Type sanity pass (native UIKit text handles this; Flutter theming didn't).
+8. Dark-mode check: app stays **light in system dark mode** (parity pin above); Dynamic Type renders natively (larger text scales — a native benefit, not a layout change).
 
 **P6 — Decommission decision**
 Keep both stacks until P5 passes, then either delete Flutter code or make `ios-native/` the sole iOS artifact and keep Flutter for Android.
@@ -96,5 +96,5 @@ Logging parity: implement one `EventMonitor` subclass (`ResponseLoggingMonitor`)
 - **Geo lat/lng decoding** is the only non-trivial serialization difference (Double vs String) — the custom decoder in the DTO layer handles it; entity stays `String?` for display parity.
 - **SwiftData atomicity** (D1) is the main technical risk; if delete-all + insert-all + single `save()` ever proves non-atomic under interruption, GRDB is the documented fallback with the same repository interface.
 - **Clear-and-replace semantics** carry over unchanged — deleted users reappear after a successful refresh, same accepted trade-off.
-- **No tests:** P5 checklist replaces tests, mirroring the standing constraint; the build gate is the P1 `xcodebuild` command.
+- **No tests, no unit tests:** P5 checklist replaces them, mirroring the standing constraint — no XCTest/Swift Testing targets, no test schemes, no CI test steps; the build gate is the P1 `xcodebuild` command.
 - **Compose plan symmetry:** package/naming mirrors `COMPOSE-MIGRATION-PLAN.md` so the two native apps can be maintained side by side with shared review checklists.
