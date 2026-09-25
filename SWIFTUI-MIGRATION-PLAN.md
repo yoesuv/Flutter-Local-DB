@@ -60,7 +60,7 @@
 ## 3. Phases
 
 **P1 — Scaffold (goal: `xcodebuild -scheme FlutterLocalDb -destination 'generic/platform=iOS Simulator' build` green)**
-`ios-native/` Xcode project (or Swift Package + project via XcodeGen/Tuist if preferred), app entry, portrait-locked Info.plist, ATS exemption, teal accent. Empty `HomeView` placeholder.
+`ios-native/` Xcode project with **Swift Package Manager as the sole dependency manager** (no CocoaPods/Carthage, no project generators like XcodeGen/Tuist), app entry, portrait-locked Info.plist, ATS exemption, teal accent. Empty `HomeView` placeholder.
 
 **P2 — Data layer**
 DTOs (incl. the Geo Double-or-String decoder), `NetworkHelper` + `UserAPI`, SwiftData models + container, `AppRepository`, `DbUserRepository`, `RepositoryException`. Repositories injected as protocols so implementations can be swapped by hand — **no test code is written**: no XCTest/Swift Testing targets, no unit tests (standing constraint); verification is the P5 manual checklist only.
@@ -86,9 +86,11 @@ Keep both stacks until P5 passes, then either delete Flutter code or make `ios-n
 
 ## 4. Dependencies
 
-One third-party package: **Alamofire 5.x** via Swift Package Manager (mirrors the Dio role exactly — request layer, timeouts, response logging). Everything else is first-party: SwiftData for the DB, SwiftUI/NavigationStack for UI. Xcode 16+, Swift 6 language mode; Alamofire's async/await API (`AF.request(...).serializingDecodable`) hops off the main actor automatically.
+Dependency management: **Swift Package Manager only** — Alamofire 5.x is added in Xcode (File → Add Package Dependencies) and pinned to an exact version; `Package.resolved` is committed so builds are reproducible. No CocoaPods, no Carthage, no project generators. Alamofire mirrors the Dio role exactly (request layer, timeouts, response logging); everything else is first-party: SwiftData for the DB, SwiftUI/NavigationStack for UI. Xcode 16+, Swift 6 language mode; Alamofire's async/await API (`AF.request(...).serializingDecodable`) hops off the main actor automatically.
 
 Logging parity: implement one `EventMonitor` subclass (`ResponseLoggingMonitor`) that prints status code + URL + chunked body, gated by `#if DEBUG` — the equivalent of `LoggingInterceptor`.
+
+If local code is later extracted for reuse between targets, it should become a **local SPM package** (`ios-native/Packages/<Name>` with its own `Package.swift`) referenced by the app project — never a CocoaPods pod. Not needed for the initial port (single app target, matching today's flat Flutter structure).
 
 ## 5. Risks / notes
 
