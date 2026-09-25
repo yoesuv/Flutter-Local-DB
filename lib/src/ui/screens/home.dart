@@ -74,7 +74,19 @@ class _HomeState extends State<Home> {
       return const Center(child: CircularProgressIndicator());
     }
     if (state.statusLoadListUser.isFailure) {
-      return const Center(child: Text('Failed to load users'));
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Failed to load users'),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => _myAppBloc?.add(MyAppLoadListUserEvent()),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
     }
     if (state.users.isEmpty) {
       return const Center(child: Text('No users'));
